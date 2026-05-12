@@ -1,1 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Dev Portfolio | Mike Carter</title>
+  <!-- simple but clean font & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f7fafc;
+      color: #0a1c2f;
+      line-height: 1.4;
+    }
+
+    /* one-screen layout — everything visible without heavy scroll */
+    .one-screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* simple card style */
+    .card {
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0,0,0,0.02);
+      padding: 2rem 2rem 1.8rem;
+      transition: all 0.2s;
+    }
+
+    /* header and avatar */
+    .dev-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .avatar {
+      background: linear-gradient(145deg, #1e2b3c, #0f212f);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #cbd5e6;
+      box-shadow: 0 8px 14px rgba(0,0,0,0.05);
+    }
+    .title h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .title p {
+      color: #4b5a6e;
+      margin-top: 0.2rem;
+    }
+    .online-badge {
+      background: #e6f7ec;
+      color: #1e7b46;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* quick bio grid 2cols */
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin: 1.5rem 0 1.8rem;
+      justify-content: space-between;
+    }
+    .info-item {
+      flex: 1;
+      min-width: 140px;
+    }
+    .info-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #5380b0;
+    }
+    .info-value {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-top: 0.2rem;
+      color: #0f2b3b;
+    }
+
+    /* tech chips */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.5rem 0 1.8rem;
+    }
+    .chip {
+      background: #ecf3fa;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* projects mini grid - 3 compact items */
+    .projects-mini {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .project-chip {
+      background: #f8fafd;
+      border-radius: 1.4rem;
+      padding: 0.9rem 1rem;
+      border: 1px solid #e2edf7;
+      transition: all 0.2s;
+    }
+    .project-chip i {
+      color: #2c6e9e;
+      font-size: 1.2rem;
+      margin-right: 6px;
+    }
+    .project-chip h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .project-chip p {
+      font-size: 0.7rem;
+      color: #587b9c;
+    }
+
+    /* links & contact row */
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .contact-btn {
+      background: #ffffff;
+      border: 1px solid #dce5ef;
+      border-radius: 60px;
+      padding: 0.5rem 1.4rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #1f3b4c;
+      transition: 0.2s;
+    }
+    .contact-btn:hover {
+      border-color: #2c6e9e;
+      background: #f0f6fe;
+      transform: translateY(-2px);
+    }
+    .btn-primary-sm {
+      background: #1f3b4c;
+      color: white;
+      border: none;
+    }
+    .btn-primary-sm:hover {
+      background: #0e2a3a;
+    }
+
+    hr {
+      margin: 1rem 0;
+      border: 0;
+      height: 1px;
+      background: #e3ecf3;
+    }
+
+    /* footer */
+    .footer-note {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #91a9c2;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 750px) {
+      .card {
+        padding: 1.5rem;
+      }
+      .title h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="one-screen">
+  <div class="container">
+    <div class="card">
+      <!-- header: avatar + name -->
+      <div class="dev-header">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div class="avatar">
+            <i class="fas fa-terminal"></i>
+          </div>
+          <div class="title">
+            <h1>Mike Carter <span style="font-weight: 400; color:#4175a0;">· dev</span></h1>
+            <p>full-stack · open source enthusiast</p>
+          </div>
+        </div>
+        <div class="online-badge">
+          <i class="fas fa-circle" style="font-size: 0.55rem;"></i> available for work
+        </div>
+      </div>
+
+      <!-- short bio + location & exp -->
+      <div class="info-row">
+        <div class="info-item">
+          <div class="info-label"><i class="fas fa-map-pin"></i> based</div>
+          <div class="info-value">Berlin, DE / remote</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label"><i class="far fa-calendar-alt"></i> experience</div>
+          <div class="info-value">5+ years · 20+ projects</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label"><i class="fas fa-code"></i> main stack</div>
+          <div class="info-value">React, Node, TS, Python</div>
+        </div>
+      </div>
+
+      <!-- one-line statement -->
+      <div style="background:#eef3fc; border-radius: 1.5rem; padding: 0.7rem 1.2rem; margin: 0.5rem 0;">
+        <i class="fas fa-quote-left" style="color:#2c6e9e; opacity:0.7; margin-right: 8px;"></i>
+        <span style="font-size: 0.85rem;">building clean, scalable web tools with a focus on developer experience & performance.</span>
+      </div>
+
+      <!-- tech chips -->
+      <div class="tech-stack">
+        <span class="chip"><i class="fab fa-react"></i> React/Next</span>
+        <span class="chip"><i class="fab fa-node-js"></i> Node.js</span>
+        <span class="chip"><i class="fab fa-python"></i> FastAPI</span>
+        <span class="chip"><i class="fas fa-database"></i> PostgreSQL</span>
+        <span class="chip"><i class="fab fa-docker"></i> Docker</span>
+        <span class="chip"><i class="fab fa-git-alt"></i> Git</span>
+        <span class="chip"><i class="fas fa-cloud"></i> Vercel / Render</span>
+      </div>
+
+      <!-- 3 featured projects (simple and compact) -->
+      <h3 style="font-size: 1rem; margin: 0.5rem 0 0rem; font-weight: 700;">📌 recent projects</h3>
+      <div class="projects-mini">
+        <div class="project-chip">
+          <i class="fas fa-chart-simple"></i> <h4>Analytics Dash</h4>
+          <p>Real-time dashboard + AI insights · React + D3</p>
+        </div>
+        <div class="project-chip">
+          <i class="fab fa-github"></i> <h4>GitInsight CLI</h4>
+          <p>Terminal tool for repo metrics · Node + Octokit</p>
+        </div>
+        <div class="project-chip">
+          <i class="fas fa-robot"></i> <h4>DocMind AI</h4>
+          <p>LLM summarizer API · FastAPI + LangChain</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- contact & social one-liner row -->
+      <div style="text-align: center;">
+        <div class="contact-links">
+          <a href="#" class="contact-btn" id="githubMock"><i class="fab fa-github"></i> github/mike-carter</a>
+          <a href="#" class="contact-btn" id="linkedinMock"><i class="fab fa-linkedin-in"></i> mike.carter.dev</a>
+          <a href="#" class="contact-btn"><i class="fab fa-twitter"></i> @mikeweb</a>
+          <a href="#" class="contact-btn btn-primary-sm" id="emailMock"><i class="far fa-envelope"></i> hi@mike.dev</a>
+        </div>
+        <div style="margin-top: 1rem; font-size: 0.75rem; color: #4b6b89;">
+          <i class="fas fa-code-branch"></i> open to collab · resume on request
+        </div>
+      </div>
+      <div class="footer-note">
+        <i class="fas fa-globe"></i> one-page portfolio — full projects & articles on GitHub
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // tiny interactive demo - portfolio actions simulate contact/github
+  (function() {
+    const githubBtn = document.getElementById('githubMock');
+    const linkedinBtn = document.getElementById('linkedinMock');
+    const emailBtn = document.getElementById('emailMock');
+
+    if (githubBtn) {
+      githubBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert("🔗 GitHub profile: github.com/mike-carter — check out repos, stars and open source contributions.");
+      });
+    }
+    if (linkedinBtn) {
+      linkedinBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert("💼 LinkedIn: /in/mike-carter-dev — 5+ years of experience, feel free to connect.");
+      });
+    }
+    if (emailBtn) {
+      emailBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert("📧 hi@mike.dev — Let's discuss your next project or a potential role.");
+      });
+    }
+
+    // smooth for any anchor (just in case)
+    const allFake = document.querySelectorAll('.contact-btn');
+    allFake.forEach(btn => {
+      if (btn.getAttribute('href') === '#') {
+        btn.addEventListener('click', (e) => {
+          if(!btn.id) {
+            e.preventDefault();
+            alert("🌐 connect via email or LinkedIn — let's build something great.");
+          }
+        });
+      }
+    });
+  })();
+</script>
+</body>
+</html>
