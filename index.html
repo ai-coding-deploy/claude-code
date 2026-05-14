@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Dev Portfolio | Mike Carter</title>
-  <!-- simple but clean font & icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <title>Nico West · engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -15,340 +14,296 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #f7fafc;
-      color: #0a1c2f;
-      line-height: 1.4;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1a1a1e;
     }
 
-    /* one-screen layout — everything visible without heavy scroll */
-    .one-screen {
+    .page {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      padding: 2rem 1.5rem;
+      padding: 1.5rem;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
+    .wrap {
+      max-width: 640px;
       width: 100%;
     }
 
-    /* simple card style */
     .card {
-      background: white;
-      border-radius: 2rem;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0,0,0,0.02);
-      padding: 2rem 2rem 1.8rem;
-      transition: all 0.2s;
+      background: #ffffff;
+      padding: 2.4rem;
+      border-radius: 28px;
+      border: 1px solid #eaedf2;
     }
 
-    /* header and avatar */
-    .dev-header {
+    .header {
       display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
       justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .status {
+      background: #f0f3f8;
+      padding: 0.25rem 1rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #2a7346;
+    }
+    .status i {
+      font-size: 0.45rem;
+      margin-right: 4px;
+    }
+
+    .role {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #4a4a55;
+      margin-bottom: 1.2rem;
+    }
+
+    .bio {
+      color: #52525f;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.8rem;
+    }
+
+    .info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
       margin-bottom: 2rem;
     }
-    .avatar {
-      background: linear-gradient(145deg, #1e2b3c, #0f212f);
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
+    .info span {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: #cbd5e6;
-      box-shadow: 0 8px 14px rgba(0,0,0,0.05);
-    }
-    .title h1 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-    .title p {
-      color: #4b5a6e;
-      margin-top: 0.2rem;
-    }
-    .online-badge {
-      background: #e6f7ec;
-      color: #1e7b46;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* quick bio grid 2cols */
-    .info-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.8rem;
-      margin: 1.5rem 0 1.8rem;
-      justify-content: space-between;
-    }
-    .info-item {
-      flex: 1;
-      min-width: 140px;
-    }
-    .info-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #5380b0;
-    }
-    .info-value {
-      font-weight: 700;
-      font-size: 1rem;
-      margin-top: 0.2rem;
-      color: #0f2b3b;
-    }
-
-    /* tech chips */
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin: 1.5rem 0 1.8rem;
-    }
-    .chip {
-      background: #ecf3fa;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
+      gap: 8px;
+      font-size: 0.85rem;
       font-weight: 500;
+      color: #35353f;
+    }
+    .info i {
+      color: #8f8f9e;
+      width: 18px;
     }
 
-    /* projects mini grid - 3 compact items */
-    .projects-mini {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 1.2rem;
-      margin: 1.5rem 0 2rem;
-    }
-    .project-chip {
-      background: #f8fafd;
-      border-radius: 1.4rem;
-      padding: 0.9rem 1rem;
-      border: 1px solid #e2edf7;
-      transition: all 0.2s;
-    }
-    .project-chip i {
-      color: #2c6e9e;
-      font-size: 1.2rem;
-      margin-right: 6px;
-    }
-    .project-chip h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-    }
-    .project-chip p {
+    .section {
       font-size: 0.7rem;
-      color: #587b9c;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      font-weight: 600;
+      color: #9ca3af;
+      margin-bottom: 0.7rem;
     }
 
-    /* links & contact row */
-    .contact-links {
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .skills span {
+      background: #f6f8fc;
+      padding: 0.3rem 1.1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #2d2d36;
+    }
+
+    .projects {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
-      margin-top: 1rem;
+      margin-bottom: 2rem;
     }
-    .contact-btn {
+    .project {
+      flex: 1;
+      min-width: 135px;
+      background: #fefeff;
+      border-radius: 20px;
+      padding: 0.85rem 1rem;
+      border: 1px solid #eff2f7;
+      transition: 0.2s;
+    }
+    .project:hover {
+      border-color: #e0e4ea;
       background: #ffffff;
-      border: 1px solid #dce5ef;
-      border-radius: 60px;
-      padding: 0.5rem 1.4rem;
-      text-decoration: none;
-      font-weight: 500;
+    }
+    .project h4 {
       font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 0.3rem;
+    }
+    .project p {
+      font-size: 0.7rem;
+      color: #6e6e7e;
+      line-height: 1.4;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eff1f5;
+    }
+    .links a {
+      background: #fafbfe;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #2a2a32;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: #1f3b4c;
+      border: 1px solid #edf0f5;
       transition: 0.2s;
     }
-    .contact-btn:hover {
-      border-color: #2c6e9e;
-      background: #f0f6fe;
-      transform: translateY(-2px);
+    .links a:hover {
+      background: #ffffff;
+      border-color: #d0d6e0;
     }
-    .btn-primary-sm {
-      background: #1f3b4c;
+    .links .primary {
+      background: #1a1a22;
       color: white;
       border: none;
     }
-    .btn-primary-sm:hover {
-      background: #0e2a3a;
+    .links .primary:hover {
+      background: #2d2d3a;
     }
 
-    hr {
-      margin: 1rem 0;
-      border: 0;
-      height: 1px;
-      background: #e3ecf3;
-    }
-
-    /* footer */
-    .footer-note {
+    .footer {
       text-align: center;
-      font-size: 0.7rem;
-      color: #91a9c2;
+      font-size: 0.65rem;
+      color: #b9c0cc;
       margin-top: 1.5rem;
     }
 
-    @media (max-width: 750px) {
+    @media (max-width: 520px) {
       .card {
         padding: 1.5rem;
       }
-      .title h1 {
-        font-size: 1.6rem;
+      .header h1 {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-<div class="one-screen">
-  <div class="container">
+<div class="page">
+  <div class="wrap">
     <div class="card">
-      <!-- header: avatar + name -->
-      <div class="dev-header">
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <div class="avatar">
-            <i class="fas fa-terminal"></i>
-          </div>
-          <div class="title">
-            <h1>Mike Carter <span style="font-weight: 400; color:#4175a0;">· dev</span></h1>
-            <p>full-stack · open source enthusiast</p>
-          </div>
+      
+      <div class="header">
+        <h1>Nico West</h1>
+        <div class="status"><i class="fas fa-circle"></i> open</div>
+      </div>
+
+      <div class="role">
+        software engineer · backend & frontend
+      </div>
+
+      <div class="bio">
+        I build fast, reliable applications with clean architecture.
+        Based in Austin, I love solving backend challenges and crafting solid APIs.
+      </div>
+
+      <div class="info">
+        <span><i class="fas fa-location-dot"></i> Austin</span>
+        <span><i class="far fa-calendar"></i> 5+ years</span>
+        <span><i class="far fa-envelope"></i> nico@west.dev</span>
+      </div>
+
+      <div class="section">tech</div>
+      <div class="skills">
+        <span>Go</span>
+        <span>Node.js</span>
+        <span>TypeScript</span>
+        <span>React</span>
+        <span>Postgres</span>
+        <span>Docker</span>
+      </div>
+
+      <div class="section">builds</div>
+      <div class="projects">
+        <div class="project">
+          <h4><i class="fas fa-server"></i> Kite</h4>
+          <p>Lightweight API gateway</p>
         </div>
-        <div class="online-badge">
-          <i class="fas fa-circle" style="font-size: 0.55rem;"></i> available for work
+        <div class="project">
+          <h4><i class="fas fa-database"></i> Cache</h4>
+          <p>In-memory key-value store</p>
+        </div>
+        <div class="project">
+          <h4><i class="fas fa-chart-line"></i> Pulse</h4>
+          <p>Uptime monitoring tool</p>
         </div>
       </div>
 
-      <!-- short bio + location & exp -->
-      <div class="info-row">
-        <div class="info-item">
-          <div class="info-label"><i class="fas fa-map-pin"></i> based</div>
-          <div class="info-value">Berlin, DE / remote</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label"><i class="far fa-calendar-alt"></i> experience</div>
-          <div class="info-value">5+ years · 20+ projects</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label"><i class="fas fa-code"></i> main stack</div>
-          <div class="info-value">React, Node, TS, Python</div>
-        </div>
+      <div class="links">
+        <a href="#" id="githubBtn"><i class="fab fa-github"></i> nicowest</a>
+        <a href="#" id="linkedinBtn"><i class="fab fa-linkedin-in"></i> nicowest</a>
+        <a href="#" id="emailBtn"><i class="far fa-paper-plane"></i> nico@west.dev</a>
+        <a href="#" class="primary" id="resumeBtn"><i class="far fa-file"></i> resume</a>
       </div>
-
-      <!-- one-line statement -->
-      <div style="background:#eef3fc; border-radius: 1.5rem; padding: 0.7rem 1.2rem; margin: 0.5rem 0;">
-        <i class="fas fa-quote-left" style="color:#2c6e9e; opacity:0.7; margin-right: 8px;"></i>
-        <span style="font-size: 0.85rem;">building clean, scalable web tools with a focus on developer experience & performance.</span>
-      </div>
-
-      <!-- tech chips -->
-      <div class="tech-stack">
-        <span class="chip"><i class="fab fa-react"></i> React/Next</span>
-        <span class="chip"><i class="fab fa-node-js"></i> Node.js</span>
-        <span class="chip"><i class="fab fa-python"></i> FastAPI</span>
-        <span class="chip"><i class="fas fa-database"></i> PostgreSQL</span>
-        <span class="chip"><i class="fab fa-docker"></i> Docker</span>
-        <span class="chip"><i class="fab fa-git-alt"></i> Git</span>
-        <span class="chip"><i class="fas fa-cloud"></i> Vercel / Render</span>
-      </div>
-
-      <!-- 3 featured projects (simple and compact) -->
-      <h3 style="font-size: 1rem; margin: 0.5rem 0 0rem; font-weight: 700;">📌 recent projects</h3>
-      <div class="projects-mini">
-        <div class="project-chip">
-          <i class="fas fa-chart-simple"></i> <h4>Analytics Dash</h4>
-          <p>Real-time dashboard + AI insights · React + D3</p>
-        </div>
-        <div class="project-chip">
-          <i class="fab fa-github"></i> <h4>GitInsight CLI</h4>
-          <p>Terminal tool for repo metrics · Node + Octokit</p>
-        </div>
-        <div class="project-chip">
-          <i class="fas fa-robot"></i> <h4>DocMind AI</h4>
-          <p>LLM summarizer API · FastAPI + LangChain</p>
-        </div>
-      </div>
-
-      <hr>
-
-      <!-- contact & social one-liner row -->
-      <div style="text-align: center;">
-        <div class="contact-links">
-          <a href="#" class="contact-btn" id="githubMock"><i class="fab fa-github"></i> github/mike-carter</a>
-          <a href="#" class="contact-btn" id="linkedinMock"><i class="fab fa-linkedin-in"></i> mike.carter.dev</a>
-          <a href="#" class="contact-btn"><i class="fab fa-twitter"></i> @mikeweb</a>
-          <a href="#" class="contact-btn btn-primary-sm" id="emailMock"><i class="far fa-envelope"></i> hi@mike.dev</a>
-        </div>
-        <div style="margin-top: 1rem; font-size: 0.75rem; color: #4b6b89;">
-          <i class="fas fa-code-branch"></i> open to collab · resume on request
-        </div>
-      </div>
-      <div class="footer-note">
-        <i class="fas fa-globe"></i> one-page portfolio — full projects & articles on GitHub
+      <div class="footer">
+        freelance & full-time · remote
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  // tiny interactive demo - portfolio actions simulate contact/github
   (function() {
-    const githubBtn = document.getElementById('githubMock');
-    const linkedinBtn = document.getElementById('linkedinMock');
-    const emailBtn = document.getElementById('emailMock');
-
-    if (githubBtn) {
-      githubBtn.addEventListener('click', (e) => {
+    const github = document.getElementById('githubBtn');
+    const linkedin = document.getElementById('linkedinBtn');
+    const email = document.getElementById('emailBtn');
+    const resume = document.getElementById('resumeBtn');
+    
+    if(github) {
+      github.addEventListener('click', (e) => {
         e.preventDefault();
-        alert("🔗 GitHub profile: github.com/mike-carter — check out repos, stars and open source contributions.");
+        alert("🐙 github.com/nicowest — backend tools and open source.");
       });
     }
-    if (linkedinBtn) {
-      linkedinBtn.addEventListener('click', (e) => {
+    if(linkedin) {
+      linkedin.addEventListener('click', (e) => {
         e.preventDefault();
-        alert("💼 LinkedIn: /in/mike-carter-dev — 5+ years of experience, feel free to connect.");
+        alert("💼 linkedin.com/in/nicowest — experience and recommendations.");
       });
     }
-    if (emailBtn) {
-      emailBtn.addEventListener('click', (e) => {
+    if(email) {
+      email.addEventListener('click', (e) => {
         e.preventDefault();
-        alert("📧 hi@mike.dev — Let's discuss your next project or a potential role.");
+        alert("📧 nico@west.dev — drop a message, I'll reply within 24h.");
       });
     }
-
-    // smooth for any anchor (just in case)
-    const allFake = document.querySelectorAll('.contact-btn');
-    allFake.forEach(btn => {
-      if (btn.getAttribute('href') === '#') {
-        btn.addEventListener('click', (e) => {
-          if(!btn.id) {
-            e.preventDefault();
-            alert("🌐 connect via email or LinkedIn — let's build something great.");
-          }
-        });
-      }
-    });
+    if(resume) {
+      resume.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert("📄 Resume — available upon request.");
+      });
+    }
   })();
 </script>
-  <script src="protection.js"></script>
 </body>
 </html>
