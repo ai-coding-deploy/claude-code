@@ -1,310 +1,1255 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Nico West · engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #ffffff;
-      color: #1a1a1e;
-    }
+    <title>CortexLens School — Practical AI fluency for the modern professional</title>
+    <meta
+      name="description"
+      content="CortexLens School is a free, self-paced learning program that teaches working professionals how to use AI in their day-to-day jobs. Twelve calm, structured courses built in the United States."
+    />
+    <meta name="author" content="CortexLens School" />
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CortexLens School" />
+    <meta
+      property="og:description"
+      content="A free, self-paced school for professionals who want to use AI well."
+    />
+    <meta property="og:url" content="https://cortexlens.com" />
 
-    .wrap {
-      max-width: 640px;
-      width: 100%;
-    }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-    .card {
-      background: #ffffff;
-      padding: 2.4rem;
-      border-radius: 28px;
-      border: 1px solid #eaedf2;
-    }
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+    <header class="site-header" role="banner">
+      <div class="container site-header__inner">
+        <a href="#top" class="site-header__brand" aria-label="CortexLens School — home">
+          <span class="site-header__brand-mark">◆</span>CortexLens School
+        </a>
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-    }
-    .header h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: -0.3px;
-    }
-    .status {
-      background: #f0f3f8;
-      padding: 0.25rem 1rem;
-      border-radius: 50px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: #2a7346;
-    }
-    .status i {
-      font-size: 0.45rem;
-      margin-right: 4px;
-    }
+        <button
+          class="site-header__menu-toggle"
+          type="button"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+          aria-label="Open menu"
+        >
+          <span></span>
+        </button>
 
-    .role {
-      font-size: 1rem;
-      font-weight: 400;
-      color: #4a4a55;
-      margin-bottom: 1.2rem;
-    }
-
-    .bio {
-      color: #52525f;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin-bottom: 1.8rem;
-    }
-
-    .info {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .info span {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #35353f;
-    }
-    .info i {
-      color: #8f8f9e;
-      width: 18px;
-    }
-
-    .section {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      font-weight: 600;
-      color: #9ca3af;
-      margin-bottom: 0.7rem;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-    }
-    .skills span {
-      background: #f6f8fc;
-      padding: 0.3rem 1.1rem;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #2d2d36;
-    }
-
-    .projects {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .project {
-      flex: 1;
-      min-width: 135px;
-      background: #fefeff;
-      border-radius: 20px;
-      padding: 0.85rem 1rem;
-      border: 1px solid #eff2f7;
-      transition: 0.2s;
-    }
-    .project:hover {
-      border-color: #e0e4ea;
-      background: #ffffff;
-    }
-    .project h4 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 0.3rem;
-    }
-    .project p {
-      font-size: 0.7rem;
-      color: #6e6e7e;
-      line-height: 1.4;
-    }
-
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 0.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid #eff1f5;
-    }
-    .links a {
-      background: #fafbfe;
-      padding: 0.4rem 1.2rem;
-      border-radius: 60px;
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #2a2a32;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid #edf0f5;
-      transition: 0.2s;
-    }
-    .links a:hover {
-      background: #ffffff;
-      border-color: #d0d6e0;
-    }
-    .links .primary {
-      background: #1a1a22;
-      color: white;
-      border: none;
-    }
-    .links .primary:hover {
-      background: #2d2d3a;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 0.65rem;
-      color: #b9c0cc;
-      margin-top: 1.5rem;
-    }
-
-    @media (max-width: 520px) {
-      .card {
-        padding: 1.5rem;
-      }
-      .header h1 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
-</head>
-<body>
-<div class="page">
-  <div class="wrap">
-    <div class="card">
-      
-      <div class="header">
-        <h1>Nico West</h1>
-        <div class="status"><i class="fas fa-circle"></i> open</div>
+        <nav
+          id="primary-nav"
+          class="site-nav"
+          aria-label="Primary"
+        >
+          <a class="site-nav__link" href="#program">Program</a>
+          <a class="site-nav__link" href="#catalog">Courses</a>
+          <a class="site-nav__link" href="#faculty">Faculty</a>
+          <a class="site-nav__link" href="#library">Library</a>
+          <a class="site-nav__link" href="#faq">FAQ</a>
+        </nav>
       </div>
+    </header>
 
-      <div class="role">
-        software engineer · backend & frontend
-      </div>
+    <main id="top">
+      <!-- =====================================================
+           1. HERO
+           ===================================================== -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero__grid">
+          <div class="hero__content reveal">
+            <span class="hero__eyebrow">CortexLens School · Est. 2026</span>
+            <h1 id="hero-title" class="hero__title">
+              Practical AI for People Who Have
+              <span class="hero__title-accent">Real Work</span> to Do.
+            </h1>
+            <p class="hero__subhead">
+              A free, self-paced school for professionals who want to use AI well — without the hype, the jargon, or the sales pitch.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#catalog">See the courses</a>
+              <a class="btn btn--ghost" href="#program">How it works</a>
+            </div>
+            <dl class="hero__meta">
+              <div class="hero__meta-item">
+                <dt class="visually-hidden">Courses</dt>
+                <dd>
+                  <span class="hero__meta-value">12</span>
+                  Courses, plainly written
+                </dd>
+              </div>
+              <div class="hero__meta-item">
+                <dt class="visually-hidden">Pace</dt>
+                <dd>
+                  <span class="hero__meta-value">Self</span>
+                  Paced, no deadlines
+                </dd>
+              </div>
+              <div class="hero__meta-item">
+                <dt class="visually-hidden">Cost</dt>
+                <dd>
+                  <span class="hero__meta-value">Free</span>
+                  To read, always
+                </dd>
+              </div>
+            </dl>
+          </div>
 
-      <div class="bio">
-        I build fast, reliable applications with clean architecture.
-        Based in Austin, I love solving backend challenges and crafting solid APIs.
-      </div>
-
-      <div class="info">
-        <span><i class="fas fa-location-dot"></i> Austin</span>
-        <span><i class="far fa-calendar"></i> 5+ years</span>
-        <span><i class="far fa-envelope"></i> nico@west.dev</span>
-      </div>
-
-      <div class="section">tech</div>
-      <div class="skills">
-        <span>Go</span>
-        <span>Node.js</span>
-        <span>TypeScript</span>
-        <span>React</span>
-        <span>Postgres</span>
-        <span>Docker</span>
-      </div>
-
-      <div class="section">builds</div>
-      <div class="projects">
-        <div class="project">
-          <h4><i class="fas fa-server"></i> Kite</h4>
-          <p>Lightweight API gateway</p>
+          <div class="hero__canvas-wrap reveal">
+            <div id="hero-helix" class="hero__canvas" aria-hidden="true">
+              <span class="hero__canvas-caption">Learning, intertwined</span>
+            </div>
+          </div>
         </div>
-        <div class="project">
-          <h4><i class="fas fa-database"></i> Cache</h4>
-          <p>In-memory key-value store</p>
-        </div>
-        <div class="project">
-          <h4><i class="fas fa-chart-line"></i> Pulse</h4>
-          <p>Uptime monitoring tool</p>
-        </div>
-      </div>
+      </section>
 
-      <div class="links">
-        <a href="#" id="githubBtn"><i class="fab fa-github"></i> nicowest</a>
-        <a href="#" id="linkedinBtn"><i class="fab fa-linkedin-in"></i> nicowest</a>
-        <a href="#" id="emailBtn"><i class="far fa-paper-plane"></i> nico@west.dev</a>
-        <a href="#" class="primary" id="resumeBtn"><i class="far fa-file"></i> resume</a>
+      <!-- =====================================================
+           2. WELCOME FROM THE DEAN
+           ===================================================== -->
+      <section class="section welcome" id="welcome" aria-labelledby="welcome-title">
+        <div class="container welcome__grid">
+          <div class="welcome__label reveal">
+            <h2 id="welcome-title" class="visually-hidden">Welcome from the Dean</h2>
+            Welcome<br />from the Dean
+          </div>
+          <div class="welcome__body reveal">
+            <p>
+              Most writing about artificial intelligence is either breathless or
+              bleak. We wanted a third option — a calm, careful place to learn
+              how these tools actually fit into the work most of us already do.
+              CortexLens School was built for the analyst with thirty open tabs,
+              the marketing lead with a Monday brief, the engineer who would
+              rather understand the model than market it.
+            </p>
+            <p>
+              You will not find shortcuts here, and you will not find anything
+              to buy. You will find twelve plain-spoken courses, written by
+              people who teach for a living and use AI on real projects. Read
+              them in order, read them in any order, or read only the lesson
+              you need before lunch.
+            </p>
+            <p>
+              We hope you stay a while.
+            </p>
+            <span class="welcome__signature">
+              — Dr. Helen Marsh, Dean of Studies
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           3. PROGRAM AT A GLANCE
+           ===================================================== -->
+      <section class="glance" id="program" aria-label="The program at a glance">
+        <div class="container glance__grid">
+          <div class="glance__item reveal">
+            <span class="glance__value">12 courses</span>
+            <span class="glance__label">From prompting to verification</span>
+          </div>
+          <div class="glance__item reveal">
+            <span class="glance__value">Self-paced</span>
+            <span class="glance__label">No deadlines, no enrollment</span>
+          </div>
+          <div class="glance__item reveal">
+            <span class="glance__value">Free to read</span>
+            <span class="glance__label">Open, ad-free, non-commercial</span>
+          </div>
+          <div class="glance__item reveal">
+            <span class="glance__value">USA-built</span>
+            <span class="glance__label">Curriculum from Cambridge, MA</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           4. COURSE CATALOG
+           ===================================================== -->
+      <section class="section catalog" id="catalog" aria-labelledby="catalog-title">
+        <div class="container">
+          <span class="section__eyebrow reveal">Course Catalog</span>
+          <h2 id="catalog-title" class="section__title reveal">
+            Six places to begin, six more to keep going.
+          </h2>
+          <p class="section__lede reveal">
+            Every course is written in plain English, paced for a working
+            schedule, and grounded in the kinds of tasks you do at your desk on
+            an ordinary Tuesday. Open any syllabus to see lessons, examples,
+            and the practice exercise we wrote for it.
+          </p>
+
+          <div class="catalog__grid">
+            <article class="course-card reveal">
+              <div class="course-card__media">
+                <img
+                  class="course-card__img"
+                  src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80&auto=format&fit=crop"
+                  alt="An open journal and a fountain pen on a sunlit desk, suggesting careful writing practice."
+                  loading="lazy"
+                />
+              </div>
+              <div class="course-card__body">
+                <div class="course-card__meta">
+                  <span>Foundations · 01</span>
+                  <span>8 lessons</span>
+                </div>
+                <h3 class="course-card__title">Prompting in Plain English</h3>
+                <p class="course-card__desc">
+                  How to ask large language models for what you actually want, using
+                  the same clarity you would bring to a colleague over coffee.
+                </p>
+                <a class="course-card__link" href="#lesson" aria-label="Open syllabus for Prompting in Plain English">
+                  Open syllabus &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article class="course-card reveal">
+              <div class="course-card__media">
+                <img
+                  class="course-card__img"
+                  src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=80&auto=format&fit=crop"
+                  alt="A professional working at a laptop with a calm cup of coffee, drafting written communication."
+                  loading="lazy"
+                />
+              </div>
+              <div class="course-card__body">
+                <div class="course-card__meta">
+                  <span>Communication · 02</span>
+                  <span>7 lessons</span>
+                </div>
+                <h3 class="course-card__title">AI in the Inbox: Writing &amp; Communication</h3>
+                <p class="course-card__desc">
+                  Drafting, summarizing, and tightening the messages you send all
+                  day — without losing your voice or your judgment.
+                </p>
+                <a class="course-card__link" href="#lesson" aria-label="Open syllabus for AI in the Inbox">
+                  Open syllabus &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article class="course-card reveal">
+              <div class="course-card__media">
+                <img
+                  class="course-card__img"
+                  src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80&auto=format&fit=crop"
+                  alt="A stack of open books beside a notebook, evoking careful research practice."
+                  loading="lazy"
+                />
+              </div>
+              <div class="course-card__body">
+                <div class="course-card__meta">
+                  <span>Research · 03</span>
+                  <span>9 lessons</span>
+                </div>
+                <h3 class="course-card__title">Research Without Hallucinations</h3>
+                <p class="course-card__desc">
+                  How to use AI for research without being misled by it. Source
+                  triangulation, citation checks, and an honest skepticism toolkit.
+                </p>
+                <a class="course-card__link" href="#lesson" aria-label="Open syllabus for Research Without Hallucinations">
+                  Open syllabus &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article class="course-card reveal">
+              <div class="course-card__media">
+                <img
+                  class="course-card__img"
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop"
+                  alt="A laptop screen showing a clean data dashboard with charts and spreadsheets."
+                  loading="lazy"
+                />
+              </div>
+              <div class="course-card__body">
+                <div class="course-card__meta">
+                  <span>Data · 04</span>
+                  <span>10 lessons</span>
+                </div>
+                <h3 class="course-card__title">Spreadsheets, Data, and AI</h3>
+                <p class="course-card__desc">
+                  Practical patterns for cleaning, reshaping, and reasoning about
+                  data with AI as a co-worker, not an oracle.
+                </p>
+                <a class="course-card__link" href="#lesson" aria-label="Open syllabus for Spreadsheets, Data, and AI">
+                  Open syllabus &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article class="course-card reveal">
+              <div class="course-card__media">
+                <img
+                  class="course-card__img"
+                  src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&q=80&auto=format&fit=crop"
+                  alt="A small group of professionals around a table in a quiet meeting room, deep in discussion."
+                  loading="lazy"
+                />
+              </div>
+              <div class="course-card__body">
+                <div class="course-card__meta">
+                  <span>Leadership · 05</span>
+                  <span>8 lessons</span>
+                </div>
+                <h3 class="course-card__title">AI for Managers &amp; Decision-Makers</h3>
+                <p class="course-card__desc">
+                  Where AI helps a team, where it quietly hurts one, and how to set
+                  policies that respect both your people and your work.
+                </p>
+                <a class="course-card__link" href="#lesson" aria-label="Open syllabus for AI for Managers and Decision-Makers">
+                  Open syllabus &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article class="course-card reveal">
+              <div class="course-card__media">
+                <img
+                  class="course-card__img"
+                  src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=1200&q=80&auto=format&fit=crop"
+                  alt="A pair of hands resting on an open book with margin notes, suggesting careful reading."
+                  loading="lazy"
+                />
+              </div>
+              <div class="course-card__body">
+                <div class="course-card__meta">
+                  <span>Verification · 06</span>
+                  <span>6 lessons</span>
+                </div>
+                <h3 class="course-card__title">Reading the Output: Verifying What AI Tells You</h3>
+                <p class="course-card__desc">
+                  A short, sharp course on close reading: spotting confident
+                  errors, cross-checking claims, and trusting your own eyes.
+                </p>
+                <a class="course-card__link" href="#lesson" aria-label="Open syllabus for Reading the Output">
+                  Open syllabus &rarr;
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           5. WHAT A LESSON LOOKS LIKE
+           ===================================================== -->
+      <section class="section lesson" id="lesson" aria-labelledby="lesson-title">
+        <div class="container lesson__grid">
+          <div class="lesson__media reveal">
+            <img
+              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80&auto=format&fit=crop"
+              alt="A laptop on a wooden desk with an open code editor and a notebook, set up for a focused lesson."
+              loading="lazy"
+            />
+            <div class="lesson__play" aria-hidden="true">
+              <span class="lesson__play-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="lesson__body reveal">
+            <span class="section__eyebrow">A lesson, end to end</span>
+            <h2 id="lesson-title" class="section__title">
+              What a CortexLens lesson looks like.
+            </h2>
+            <p class="section__lede">
+              Each lesson is about twelve minutes of reading, one short video
+              walk-through, and one practice exercise you can finish during a
+              coffee break. Here is the shape of every one of them.
+            </p>
+
+            <ol class="lesson__outline">
+              <li>A one-paragraph framing of the problem you are trying to solve.</li>
+              <li>A short video — usually four to six minutes — with on-screen examples.</li>
+              <li>The core lesson in plain prose, with annotated screenshots.</li>
+              <li>A practice exercise you can do at your own desk, with no setup.</li>
+              <li>A short list of common mistakes and how to recognize them in yourself.</li>
+            </ol>
+
+            <div class="lesson__exercise">
+              <span class="lesson__exercise-label">Practice exercise · sample</span>
+              <p class="lesson__exercise-text">
+                Take the last email you sent that was longer than four
+                paragraphs. Ask an AI assistant to compress it to three short
+                sentences. Then re-send the original. Notice which version
+                actually moved your work forward, and write down why.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           6. FACULTY
+           ===================================================== -->
+      <section class="section faculty" id="faculty" aria-labelledby="faculty-title">
+        <div class="container">
+          <span class="section__eyebrow reveal">Faculty</span>
+          <h2 id="faculty-title" class="section__title reveal">
+            Taught by people who teach for a living.
+          </h2>
+          <p class="section__lede reveal">
+            Our faculty have spent years in classrooms, newsrooms, and product
+            teams. They are practitioners first, instructors second, and
+            allergic to jargon in either role.
+          </p>
+
+          <div class="faculty__grid">
+            <article class="faculty-card reveal">
+              <div class="faculty-card__portrait">
+                <img
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=900&q=80&auto=format&fit=crop"
+                  alt="Portrait of Dr. Helen Marsh, smiling warmly against a pale studio background."
+                  loading="lazy"
+                />
+              </div>
+              <p class="faculty-card__focus">Foundations &amp; Prompting</p>
+              <h3 class="faculty-card__name">Dr. Helen Marsh</h3>
+              <p class="faculty-card__role">Dean of Studies · MIT Sloan School of Management</p>
+              <p class="faculty-card__note">
+                "I teach the way I learned to read — slowly, with my finger on
+                the line. AI rewards close attention."
+              </p>
+            </article>
+
+            <article class="faculty-card reveal">
+              <div class="faculty-card__portrait">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80&auto=format&fit=crop"
+                  alt="Portrait of Marcus Whitfield, looking thoughtfully off-camera in soft natural light."
+                  loading="lazy"
+                />
+              </div>
+              <p class="faculty-card__focus">Data &amp; Spreadsheets</p>
+              <h3 class="faculty-card__name">Marcus Whitfield</h3>
+              <p class="faculty-card__role">Lecturer · Tufts University, Department of Computer Science</p>
+              <p class="faculty-card__note">
+                "I want you to leave each lesson with one spreadsheet that
+                actually got better. That is the whole bar."
+              </p>
+            </article>
+
+            <article class="faculty-card reveal">
+              <div class="faculty-card__portrait">
+                <img
+                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=900&q=80&auto=format&fit=crop"
+                  alt="Portrait of Priya Ramanathan, standing near a sunlit library window with a warm, calm expression."
+                  loading="lazy"
+                />
+              </div>
+              <p class="faculty-card__focus">Research &amp; Verification</p>
+              <h3 class="faculty-card__name">Priya Ramanathan</h3>
+              <p class="faculty-card__role">Senior Editor · Harvard Public Health Review</p>
+              <p class="faculty-card__note">
+                "Half of using AI well is learning to slow down at exactly the
+                moment it sounds most confident."
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           7. STUDENT REFLECTIONS
+           ===================================================== -->
+      <section class="section reflections" id="reflections" aria-labelledby="reflections-title">
+        <div class="container">
+          <span class="section__eyebrow reveal">Student Reflections</span>
+          <h2 id="reflections-title" class="section__title reveal">
+            What learners told us after the first six lessons.
+          </h2>
+          <p class="section__lede reveal">
+            Reflections are submitted in writing, lightly edited for length, and
+            shared with permission. We do not publish names of employers.
+          </p>
+
+          <div class="reflections__viewport reveal" role="region" aria-roledescription="carousel" aria-label="Student reflections">
+            <div class="reflections__track">
+              <article class="reflections__slide">
+                <div class="reflections__avatar">
+                  <img
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80&auto=format&fit=crop"
+                    alt="Headshot of a smiling woman with short dark hair against a soft cream background."
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <p class="reflections__quote">
+                    I came in skeptical. By lesson four I was using the
+                    prompting framework to draft client briefs on Monday
+                    mornings — and getting an extra ninety minutes of my week
+                    back.
+                  </p>
+                  <p class="reflections__attribution">
+                    <span class="reflections__name">Sarah K.</span> · Senior account manager · Boston, MA
+                  </p>
+                </div>
+              </article>
+
+              <article class="reflections__slide">
+                <div class="reflections__avatar">
+                  <img
+                    src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=600&q=80&auto=format&fit=crop"
+                    alt="Headshot of a bearded man in a button-down shirt, photographed in warm window light."
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <p class="reflections__quote">
+                    The verification course is the one I send to every analyst
+                    on my team. It quietly fixed a habit I did not know I had,
+                    which was trusting fluent answers.
+                  </p>
+                  <p class="reflections__attribution">
+                    <span class="reflections__name">Daniel R.</span> · Operations lead · Austin, TX
+                  </p>
+                </div>
+              </article>
+
+              <article class="reflections__slide">
+                <div class="reflections__avatar">
+                  <img
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80&auto=format&fit=crop"
+                    alt="Headshot of a woman with long hair smiling softly, photographed against a blurred outdoor background."
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <p class="reflections__quote">
+                    I am a writer. I expected to feel defensive. Instead I
+                    learned a small set of moves that make the first draft
+                    faster without making it sound like a machine wrote it.
+                  </p>
+                  <p class="reflections__attribution">
+                    <span class="reflections__name">Lena M.</span> · Freelance journalist · Brooklyn, NY
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="reflections__controls reveal">
+            <div class="reflections__dots" aria-label="Slide indicators"></div>
+            <div class="reflections__arrows">
+              <button
+                class="reflections__arrow reflections__arrow--prev"
+                type="button"
+                aria-label="Previous reflection"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button
+                class="reflections__arrow reflections__arrow--next"
+                type="button"
+                aria-label="Next reflection"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           8. LIBRARY
+           ===================================================== -->
+      <section class="section library" id="library" aria-labelledby="library-title">
+        <div class="container">
+          <span class="section__eyebrow reveal">The Library</span>
+          <h2 id="library-title" class="section__title reveal">
+            Eight readings we keep returning to.
+          </h2>
+          <p class="section__lede reveal">
+            A small, opinionated shelf — books, essays, and papers that shaped
+            how we teach. Updated twice a year. Recommendations welcome at
+            <a href="mailto:info@cortexlens.com">info@cortexlens.com</a>.
+          </p>
+
+          <ul class="library__list reveal" role="list">
+            <li class="library-item">
+              <button class="library-item__trigger" type="button" aria-expanded="false">
+                <span class="library-item__index">01</span>
+                <span class="library-item__title">The Quiet Machine: Working With Language Models</span>
+                <span class="library-item__meta">Book · 2024</span>
+                <span class="library-item__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="library-item__panel">
+                <p class="library-item__summary">
+                  A patient, technically honest book about why models behave the
+                  way they do. It is the closest thing we have to a textbook for
+                  non-engineers, and we assign two chapters in our first course.
+                </p>
+              </div>
+            </li>
+
+            <li class="library-item">
+              <button class="library-item__trigger" type="button" aria-expanded="false">
+                <span class="library-item__index">02</span>
+                <span class="library-item__title">Notes on Hallucination</span>
+                <span class="library-item__meta">Essay · 2023</span>
+                <span class="library-item__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="library-item__panel">
+                <p class="library-item__summary">
+                  A short, precise essay on why language models confabulate, written
+                  by a researcher who has spent a decade studying the problem. We
+                  return to it whenever someone asks "can I trust this answer?"
+                </p>
+              </div>
+            </li>
+
+            <li class="library-item">
+              <button class="library-item__trigger" type="button" aria-expanded="false">
+                <span class="library-item__index">03</span>
+                <span class="library-item__title">Reading at the Speed of Trust</span>
+                <span class="library-item__meta">Essay · 2024</span>
+                <span class="library-item__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="library-item__panel">
+                <p class="library-item__summary">
+                  An argument for slowing down with AI output rather than speeding
+                  up. Quietly the most influential piece in our verification
+                  curriculum, and the one most students email us about.
+                </p>
+              </div>
+            </li>
+
+            <li class="library-item">
+              <button class="library-item__trigger" type="button" aria-expanded="false">
+                <span class="library-item__index">04</span>
+                <span class="library-item__title">The Editor in the Loop</span>
+                <span class="library-item__meta">Paper · 2024</span>
+                <span class="library-item__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="library-item__panel">
+                <p class="library-item__summary">
+                  A peer-reviewed study of how professional editors use AI to
+                  draft and revise. The methodology section alone is worth the
+                  read for anyone designing an AI policy at work.
+                </p>
+              </div>
+            </li>
+
+            <li class="library-item">
+              <button class="library-item__trigger" type="button" aria-expanded="false">
+                <span class="library-item__index">05</span>
+                <span class="library-item__title">A Field Guide to Prompt Patterns</span>
+                <span class="library-item__meta">Book · 2025</span>
+                <span class="library-item__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="library-item__panel">
+                <p class="library-item__summary">
+                  A practical, almost cookbook-like collection of prompting
+                  patterns, grouped by task rather than tool. We assign chapters
+                  three and seven in the foundations course.
+                </p>
+              </div>
+            </li>
+
+            <li class="library-item">
+              <button class="library-item__trigger" type="button" aria-expanded="false">
+                <span class="library-item__index">06</span>
+                <span class="library-item__title">When Spreadsheets Talk Back</span>
+                <span class="library-item__meta">Essay · 2025</span>
+                <span class="library-item__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="library-item__panel">
+                <p class="library-item__summary">
+                  A careful, slightly funny essay on the new generation of
+                  spreadsheet-AI interfaces and what they get wrong. Required
+                  reading for our data course before students touch a tool.
+                </p>
+              </div>
+            </li>
+
+            <li class="library-item">
+              <button class="library-item__trigger" type="button" aria-expanded="false">
+                <span class="library-item__index">07</span>
+                <span class="library-item__title">Calm Tools for Anxious Teams</span>
+                <span class="library-item__meta">Book · 2023</span>
+                <span class="library-item__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="library-item__panel">
+                <p class="library-item__summary">
+                  Not strictly about AI, but the best book we know on the
+                  emotional weather of adopting new software inside a team.
+                  Managers in our program reach for it constantly.
+                </p>
+              </div>
+            </li>
+
+            <li class="library-item">
+              <button class="library-item__trigger" type="button" aria-expanded="false">
+                <span class="library-item__index">08</span>
+                <span class="library-item__title">On the Ethics of Auto-Complete</span>
+                <span class="library-item__meta">Paper · 2024</span>
+                <span class="library-item__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="library-item__panel">
+                <p class="library-item__summary">
+                  A clear-headed paper on authorship, consent, and credit when
+                  AI assists with writing. It frames the conversations we have
+                  in the last lesson of the communications course.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           9. FAQ
+           ===================================================== -->
+      <section class="section faq section--cream" id="faq" aria-labelledby="faq-title">
+        <div class="container">
+          <span class="section__eyebrow reveal">Frequently Asked</span>
+          <h2 id="faq-title" class="section__title reveal">
+            Honest answers to honest questions.
+          </h2>
+
+          <div class="faq__grid">
+            <div class="faq-item reveal">
+              <h3 class="faq-item__q">Is this really free?</h3>
+              <p class="faq-item__a">
+                Yes. CortexLens School is informational and free to read. We
+                do not charge for courses, we do not run ads, and we do not
+                resell your data. The school is supported by a small endowment
+                and run as a non-commercial program.
+              </p>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3 class="faq-item__q">Do I need any background?</h3>
+              <p class="faq-item__a">
+                None at all. The courses assume you are comfortable with email,
+                a web browser, and the ordinary tools of office work. If you
+                can write a calendar invite, you have enough to begin.
+              </p>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3 class="faq-item__q">How long does the program take?</h3>
+              <p class="faq-item__a">
+                Most learners read one lesson a day for about six weeks. There
+                is no schedule, no enrollment, and no consequence for stopping
+                and starting. Some students return only when they need a
+                particular topic.
+              </p>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3 class="faq-item__q">Do you offer a certificate?</h3>
+              <p class="faq-item__a">
+                We issue a free completion note — a one-page PDF that
+                acknowledges you finished all twelve courses. It is not an
+                accredited credential and it is not a paid certificate. It is a
+                small, honest record, nothing more.
+              </p>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3 class="faq-item__q">What tools do you teach?</h3>
+              <p class="faq-item__a">
+                We teach the patterns of working with general-purpose AI
+                assistants — chat models, writing helpers, spreadsheet
+                copilots. The lessons stay tool-agnostic where possible, with
+                examples drawn from the assistants most readers already use.
+              </p>
+            </div>
+
+            <div class="faq-item reveal">
+              <h3 class="faq-item__q">Who is behind CortexLens School?</h3>
+              <p class="faq-item__a">
+                A small team based in Cambridge, Massachusetts — three
+                instructors, one editor, two designers, and an advisory board
+                of faculty from area universities. Mailing address, phone, and
+                email are listed in the footer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           10. NEWSLETTER
+           ===================================================== -->
+      <section class="section newsletter" id="newsletter" aria-labelledby="newsletter-title">
+        <div class="container newsletter__grid">
+          <div class="reveal">
+            <span class="section__eyebrow section__eyebrow--inverse">Field Notes</span>
+            <h2 id="newsletter-title" class="newsletter__title">
+              Receive one short lesson by email each week.
+            </h2>
+            <p class="newsletter__lede">
+              Field Notes is a brief, plainly written email from the faculty —
+              one idea, one example, no marketing. Unsubscribe with a single
+              click whenever you like.
+            </p>
+          </div>
+
+          <form class="newsletter__form reveal" novalidate>
+            <label class="visually-hidden" for="newsletter-email">Email address</label>
+            <div class="newsletter__row">
+              <input
+                id="newsletter-email"
+                class="newsletter__input"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                placeholder="you@work-email.com"
+                required
+              />
+              <button class="newsletter__submit" type="submit">Subscribe</button>
+            </div>
+            <p class="newsletter__message" role="status" aria-live="polite"></p>
+            <p class="newsletter__note">
+              We send one email a week. Your address is used only to send Field
+              Notes — see our <button type="button" class="newsletter__link" data-modal-open="modal-privacy">Privacy Policy</button>.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div>
+            <p class="site-footer__brand">
+              <span class="site-header__brand-mark">◆</span>CortexLens School
+            </p>
+            <p class="site-footer__tagline">
+              Practical AI fluency for the modern professional. A free, calm,
+              USA-built reading school.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="site-footer__heading">Study</h4>
+            <ul class="site-footer__list">
+              <li><a href="#catalog">Course catalog</a></li>
+              <li><a href="#lesson">A sample lesson</a></li>
+              <li><a href="#library">The library</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="site-footer__heading">Reach Us</h4>
+            <address class="site-footer__contact">
+              CortexLens School<br />
+              245 Main Street, 12th Floor<br />
+              Cambridge, MA 02142<br />
+              United States<br /><br />
+              <a href="tel:+16175550142">+1 (617) 555-0142</a><br />
+              <a href="mailto:info@cortexlens.com">info@cortexlens.com</a>
+            </address>
+          </div>
+
+          <div>
+            <h4 class="site-footer__heading">Notices</h4>
+            <ul class="site-footer__list">
+              <li><button type="button" data-modal-open="modal-privacy">Privacy Policy</button></li>
+              <li><button type="button" data-modal-open="modal-terms">Terms of Use</button></li>
+              <li><button type="button" data-modal-open="modal-cookies">Cookie Policy</button></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          <p class="site-footer__copy">
+            © <span class="site-footer__year">2026</span> CortexLens School. All rights reserved.
+          </p>
+          <div class="site-footer__social" aria-label="Social links">
+            <a class="site-footer__social-link" href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001zM3 9h4v12H3V9zm6 0h3.8v1.7h.05c.53-.96 1.83-1.97 3.77-1.97 4.04 0 4.78 2.65 4.78 6.1V21H17.6v-5.34c0-1.27-.02-2.91-1.78-2.91-1.78 0-2.05 1.39-2.05 2.82V21H9V9z"/></svg>
+            </a>
+            <a class="site-footer__social-link" href="#" aria-label="X (formerly Twitter)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2H21l-6.52 7.46L22 22h-6.828l-4.78-6.252L4.8 22H2l7.02-8.03L2 2h6.914l4.32 5.71L18.244 2zm-1.196 18h1.84L7.05 4H5.097L17.048 20z"/></svg>
+            </a>
+            <a class="site-footer__social-link" href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.2 5 12 5 12 5s-6.2 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26.1 26.1 0 0 0 2 12a26.1 26.1 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.8 19 12 19 12 19s6.2 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77c.27-1.58.4-3.18.4-4.8a26.1 26.1 0 0 0-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>
+            </a>
+            <a class="site-footer__social-link" href="#" aria-label="RSS feed">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36zM4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44zM4 10.1A9.9 9.9 0 0 1 13.9 20h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="footer">
-        freelance & full-time · remote
+    </footer>
+
+    <!-- =====================================================
+         MODALS
+         ===================================================== -->
+    <div
+      class="modal modal--privacy"
+      id="modal-privacy"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-privacy-title"
+      aria-hidden="true"
+    >
+      <div class="modal__backdrop" data-modal-close></div>
+      <div class="modal__dialog">
+        <header class="modal__header">
+          <h2 class="modal__title" id="modal-privacy-title">Privacy Policy</h2>
+          <button class="modal__close" type="button" aria-label="Close Privacy Policy" data-modal-close>×</button>
+        </header>
+        <div class="modal__body">
+          <p><strong>Effective date: January 1, 2026.</strong></p>
+
+          <p>
+            CortexLens School ("CortexLens," "we," "our," or "us") operates the
+            website located at <a href="https://cortexlens.com">cortexlens.com</a>
+            (the "Site") as a free, informational learning program for working
+            professionals in the United States. This Privacy Policy explains
+            what information we collect when you visit the Site, how we use
+            that information, and the rights you have over it. By using the
+            Site, you agree to the practices described below. If you do not
+            agree, please discontinue use of the Site.
+          </p>
+
+          <h3>Information we collect</h3>
+          <p>
+            We collect only the information necessary to operate the Site and
+            to deliver the optional Field Notes newsletter. When you subscribe
+            to the newsletter, we collect the email address you submit. When
+            you visit the Site, our servers automatically receive standard log
+            information that any web server receives, including your IP
+            address, browser type, referring page, and the time of your visit.
+            We use a limited set of first-party cookies and local storage keys
+            to remember your cookie consent preference and to deliver the Site
+            efficiently. We do not knowingly collect information from children
+            under thirteen years of age.
+          </p>
+
+          <h3>How we use information</h3>
+          <p>
+            We use the email address you provide solely to send the Field
+            Notes newsletter you requested and, if necessary, to respond to a
+            support inquiry you have sent us. We use aggregated, non-identifying
+            log data to understand how the Site is performing, to detect abuse,
+            and to fix bugs. We do not sell or rent personal information, and
+            we do not share it with third parties for their independent
+            marketing purposes.
+          </p>
+
+          <h3>Legal bases and your rights</h3>
+          <p>
+            We rely on your consent for newsletter delivery, and on our
+            legitimate interest in operating a stable, secure website for the
+            remaining activities described here. If you are a resident of
+            California or another U.S. state with applicable privacy law, you
+            have the right to request access to the personal information we
+            hold about you, to request correction or deletion, and to opt out
+            of any sale or sharing of personal information — although we do not
+            sell or share personal information. You may exercise these rights
+            by writing to us at <a href="mailto:info@cortexlens.com">info@cortexlens.com</a>.
+            We will verify your request and respond within forty-five days.
+          </p>
+
+          <h3>Data retention and security</h3>
+          <p>
+            We retain newsletter subscription data for as long as you remain
+            subscribed, and for a brief period afterward to honor any
+            unsubscribe request. Server logs are retained for up to ninety
+            days. We use reasonable administrative, technical, and physical
+            safeguards designed to protect personal information from
+            unauthorized access, loss, or alteration. No method of internet
+            transmission is perfectly secure, however, and we cannot guarantee
+            absolute security.
+          </p>
+
+          <h3>Third parties</h3>
+          <p>
+            The Site uses a small number of third-party services to deliver
+            fonts and images, including Google Fonts and Unsplash. These
+            providers may receive technical request information necessary to
+            deliver their content. We do not embed advertising trackers,
+            session replay, or cross-site profiling tools.
+          </p>
+
+          <h3>Changes and contact</h3>
+          <p>
+            We may update this Privacy Policy from time to time. The "Effective
+            date" above will reflect the most recent revision. For questions,
+            concerns, or requests regarding this Policy, please write to
+            CortexLens School, 245 Main Street, 12th Floor, Cambridge, MA
+            02142, United States, or email
+            <a href="mailto:info@cortexlens.com">info@cortexlens.com</a>.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<script>
-  (function() {
-    const github = document.getElementById('githubBtn');
-    const linkedin = document.getElementById('linkedinBtn');
-    const email = document.getElementById('emailBtn');
-    const resume = document.getElementById('resumeBtn');
-    
-    if(github) {
-      github.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("🐙 github.com/nicowest — backend tools and open source.");
-      });
-    }
-    if(linkedin) {
-      linkedin.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("💼 linkedin.com/in/nicowest — experience and recommendations.");
-      });
-    }
-    if(email) {
-      email.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("📧 nico@west.dev — drop a message, I'll reply within 24h.");
-      });
-    }
-    if(resume) {
-      resume.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("📄 Resume — available upon request.");
-      });
-    }
-  })();
-</script>
-</body>
-  <script src="protection.js"></script>
+    <div
+      class="modal modal--terms"
+      id="modal-terms"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-terms-title"
+      aria-hidden="true"
+    >
+      <div class="modal__backdrop" data-modal-close></div>
+      <div class="modal__dialog">
+        <header class="modal__header">
+          <h2 class="modal__title" id="modal-terms-title">Terms of Use</h2>
+          <button class="modal__close" type="button" aria-label="Close Terms of Use" data-modal-close>×</button>
+        </header>
+        <div class="modal__body">
+          <p><strong>Effective date: January 1, 2026.</strong></p>
+
+          <p>
+            These Terms of Use ("Terms") govern your access to and use of the
+            website located at <a href="https://cortexlens.com">cortexlens.com</a>
+            (the "Site") and the related informational program operated by
+            CortexLens School ("CortexLens," "we," "our," or "us"). By
+            accessing or using the Site, you agree to be bound by these Terms.
+            If you do not agree, please discontinue use of the Site.
+          </p>
+
+          <h3>Nature of the program</h3>
+          <p>
+            CortexLens School is a free, informational learning program. The
+            Site, the course materials, the lesson outlines, and the Field
+            Notes newsletter are provided for general educational purposes
+            only. They are not professional advice, legal advice, medical
+            advice, financial advice, or a substitute for the judgment of a
+            qualified professional in your industry. We do not sell anything
+            through the Site, we do not charge for access, and we do not
+            operate enrollment, certification, accreditation, or any
+            transactional service. Any "syllabus" or "completion note"
+            described on the Site is informational only.
+          </p>
+
+          <h3>Eligibility and account</h3>
+          <p>
+            You must be at least thirteen years old to use the Site. If you
+            subscribe to the Field Notes newsletter, you represent that the
+            email address you provided belongs to you or is one you are
+            authorized to use. You are responsible for keeping your contact
+            details current and for any activity that occurs through your
+            email address in connection with the Site.
+          </p>
+
+          <h3>Intellectual property</h3>
+          <p>
+            All content on the Site, including text, lesson outlines, images,
+            video thumbnails, code samples, and the visual design, is owned by
+            CortexLens or licensed to us and is protected by United States and
+            international copyright, trademark, and other intellectual property
+            laws. You may read, save, and print Site content for your own
+            personal, non-commercial learning. You may not republish, resell,
+            distribute, or create derivative works from the content without
+            our prior written permission. The CortexLens School name and
+            wordmark are our trademarks.
+          </p>
+
+          <h3>Acceptable use</h3>
+          <p>
+            You agree not to use the Site in any way that is unlawful, that
+            interferes with the operation of the Site, or that infringes the
+            rights of others. You will not attempt to gain unauthorized access
+            to the Site, probe its security, scrape its content with automated
+            tools, or use the Site to send unsolicited communications.
+          </p>
+
+          <h3>Third-party links</h3>
+          <p>
+            The Site may include links to third-party resources, readings, or
+            services. Those links are provided as a convenience. We do not
+            control and are not responsible for the content, accuracy, or
+            practices of third-party sites, and including a link does not
+            imply endorsement.
+          </p>
+
+          <h3>Disclaimer and limitation of liability</h3>
+          <p>
+            The Site is provided "as is" and "as available," without warranty
+            of any kind, express or implied. To the fullest extent permitted
+            by United States law, CortexLens, its faculty, contributors, and
+            affiliates disclaim all warranties, including warranties of
+            merchantability, fitness for a particular purpose, accuracy, and
+            non-infringement. In no event will CortexLens be liable for any
+            indirect, incidental, special, consequential, or punitive damages
+            arising out of or related to your use of the Site, even if we
+            have been advised of the possibility of such damages. Some
+            jurisdictions do not allow these limitations, in which case they
+            apply to the maximum extent permitted by law.
+          </p>
+
+          <h3>Governing law and contact</h3>
+          <p>
+            These Terms are governed by the laws of the Commonwealth of
+            Massachusetts, United States, without regard to its conflict-of-laws
+            principles. Any dispute will be brought exclusively in the state
+            or federal courts located in Middlesex County, Massachusetts. For
+            questions about these Terms, contact CortexLens School, 245 Main
+            Street, 12th Floor, Cambridge, MA 02142, United States, or email
+            <a href="mailto:info@cortexlens.com">info@cortexlens.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal modal--cookies"
+      id="modal-cookies"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-cookies-title"
+      aria-hidden="true"
+    >
+      <div class="modal__backdrop" data-modal-close></div>
+      <div class="modal__dialog">
+        <header class="modal__header">
+          <h2 class="modal__title" id="modal-cookies-title">Cookie Policy</h2>
+          <button class="modal__close" type="button" aria-label="Close Cookie Policy" data-modal-close>×</button>
+        </header>
+        <div class="modal__body">
+          <p><strong>Effective date: January 1, 2026.</strong></p>
+
+          <p>
+            This Cookie Policy explains how CortexLens School ("CortexLens,"
+            "we," "our," or "us") uses cookies and similar local-storage
+            technologies on the website at
+            <a href="https://cortexlens.com">cortexlens.com</a> (the "Site").
+            It should be read together with our Privacy Policy. By continuing
+            to use the Site after seeing the cookie notice, or by selecting
+            "Accept" in the cookie banner, you consent to the cookies described
+            here.
+          </p>
+
+          <h3>What cookies are</h3>
+          <p>
+            Cookies are small text files placed on your device by the websites
+            you visit. They are widely used to make websites work, to remember
+            preferences, and to provide a smoother experience on return visits.
+            Local storage is a related technology built into your web browser
+            that lets a site store small pieces of information on your device
+            without sending them with every request. We use both in a limited
+            way.
+          </p>
+
+          <h3>Categories of cookies we use</h3>
+          <p>
+            <strong>Strictly necessary.</strong> These are required for the
+            Site to function. They include a local-storage key named
+            <code>cortexlens_consent</code>, which records your choice on the
+            cookie banner so we do not show it on every visit. Without this
+            value, the banner would reappear constantly and the Site would be
+            harder to use. You cannot opt out of strictly necessary storage
+            and continue to use the Site normally.
+          </p>
+          <p>
+            <strong>Preference.</strong> If we add features that remember your
+            settings — for example, a future "save my reading progress"
+            feature — we will use first-party preference cookies for that
+            purpose. We do not currently set any preference cookies beyond the
+            consent key.
+          </p>
+          <p>
+            <strong>Analytics.</strong> We do not currently load third-party
+            analytics scripts. If we add lightweight, privacy-respecting
+            analytics in the future, we will update this policy, label the
+            cookies clearly, and offer a way to decline them. Declining will
+            not affect your ability to read any course on the Site.
+          </p>
+          <p>
+            <strong>Advertising.</strong> We do not use advertising cookies.
+            CortexLens School is non-commercial and does not run ads.
+          </p>
+
+          <h3>Third-party requests</h3>
+          <p>
+            The Site loads fonts from Google Fonts and images from Unsplash so
+            that the program looks consistent across devices. These providers
+            may receive standard request information, such as your IP address
+            and user agent string, that is technically necessary to deliver
+            the requested asset. They do not set cookies on this Site.
+          </p>
+
+          <h3>Managing your choices</h3>
+          <p>
+            When you first visit the Site, you will see a small banner in the
+            lower left corner with three buttons: Accept, Decline, and Manage.
+            Choosing "Accept" or "Decline" stores your preference under the
+            key <code>cortexlens_consent</code> in your browser's local
+            storage. You may clear that value at any time by clearing your
+            browser's site data for cortexlens.com, after which the banner
+            will appear again on your next visit. You can also disable cookies
+            entirely in your browser's settings; some convenience features may
+            stop working, but the courses themselves will remain readable.
+          </p>
+
+          <h3>Updates and contact</h3>
+          <p>
+            We may update this Cookie Policy as the Site evolves. The
+            "Effective date" above shows the latest revision. For questions or
+            requests, write to CortexLens School, 245 Main Street, 12th Floor,
+            Cambridge, MA 02142, United States, or email
+            <a href="mailto:info@cortexlens.com">info@cortexlens.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         COOKIE BANNER
+         ===================================================== -->
+    <aside class="cookie-banner" role="dialog" aria-label="Cookie preferences" aria-live="polite">
+      <h3 class="cookie-banner__title">A note on cookies</h3>
+      <p class="cookie-banner__copy">
+        We use a small, first-party local-storage key to remember your choice
+        below. We do not use advertising or cross-site tracking. See our
+        cookie policy for details.
+      </p>
+      <div class="cookie-banner__buttons">
+        <button class="cookie-banner__btn cookie-banner__btn--accept" type="button">Accept</button>
+        <button class="cookie-banner__btn cookie-banner__btn--decline" type="button">Decline</button>
+        <button class="cookie-banner__btn cookie-banner__btn--manage" type="button">Manage</button>
+      </div>
+    </aside>
+
+    <!-- =====================================================
+         A11Y HELPERS
+         ===================================================== -->
+    <style>
+      .visually-hidden {
+        position: absolute !important;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px; overflow: hidden;
+        clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+      }
+    </style>
+
+    <!-- =====================================================
+         SCRIPTS
+         ===================================================== -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="three-helix.js" defer></script>
+    <script src="app.js" defer></script>
+  </body>
 </html>
