@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Drift AI | Soft Intelligence Like Morning Mist</title>
-    <meta name="description" content="Drift AI brings soft, mist-like intelligence to your world. Gentle, intuitive, and beautifully human — like morning fog over a quiet lake.">
-    <meta name="keywords" content="drift AI, soft mist, gentle intelligence, peach warmth, ethical AI">
-    <meta name="author" content="Drift Labs">
+    <title>Lullaby AI | Soft Intelligence That Soothes</title>
+    <meta name="description" content="Lullaby AI brings soft, soothing intelligence to your world. Gentle, intuitive, and beautifully human — like a quiet song at twilight.">
+    <meta name="keywords" content="lullaby AI, soft soothe, gentle intelligence, peach warmth, ethical AI">
+    <meta name="author" content="Lullaby Labs">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
         }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background: #fefaf7;
             color: #3d2b1d;
             line-height: 1.5;
@@ -25,35 +25,36 @@
         }
 
         :root {
-            --drift-light: #fff0e8;
-            --drift-soft: #ffe0cc;
-            --drift-glow: #ffccae;
-            --drift-warm: #f5a06b;
-            --drift-deep: #c45a2e;
+            --lullaby-light: #fff0e8;
+            --lullaby-soft: #ffe0cc;
+            --lullaby-glow: #ffccae;
+            --lullaby-warm: #f5a06b;
+            --lullaby-deep: #c45a2e;
             --shadow-soft: 0 12px 28px rgba(196, 90, 46, 0.05);
             --glow-soft: 0 0 28px rgba(245, 160, 107, 0.28);
             --radius-card: 32px;
         }
 
-        /* Mist wave pattern */
-        .mist-pattern {
+        /* Calm wave pattern */
+        .calm-wave {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            background-image: repeating-linear-gradient(100deg, rgba(255, 204, 174, 0.06) 0px, rgba(255, 204, 174, 0.06) 1px, transparent 1px, transparent 35px);
+            background-image: repeating-linear-gradient(45deg, rgba(255, 204, 174, 0.05) 0px, rgba(255, 204, 174, 0.05) 1px, transparent 1px, transparent 28px);
             z-index: 0;
         }
-        .mist-pattern::after {
+        .calm-wave::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(245, 160, 107, 0.04) 0px, rgba(245, 160, 107, 0.04) 1px, transparent 1px, transparent 25px);
+            background: radial-gradient(circle at 30px 40px, rgba(245, 160, 107, 0.04) 1px, transparent 1px);
+            background-size: 35px 35px;
             pointer-events: none;
         }
 
@@ -72,7 +73,7 @@
             position: sticky;
             top: 0;
             z-index: 101;
-            border-bottom: 1px solid var(--drift-soft);
+            border-bottom: 1px solid var(--lullaby-soft);
         }
 
         .nav-wrapper {
@@ -86,7 +87,7 @@
 
         .logo {
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 800;
             background: linear-gradient(125deg, #c45a2e, #f5a06b);
             -webkit-background-clip: text;
             background-clip: text;
@@ -109,11 +110,11 @@
         }
 
         .nav-links a:hover {
-            color: var(--drift-deep);
+            color: var(--lullaby-deep);
         }
 
-        .btn-drift {
-            background: linear-gradient(115deg, var(--drift-deep), var(--drift-warm));
+        .btn-lullaby {
+            background: linear-gradient(115deg, var(--lullaby-deep), var(--lullaby-warm));
             padding: 0.5rem 1.6rem;
             border-radius: 50px;
             color: white;
@@ -126,7 +127,7 @@
             border: none;
         }
 
-        .btn-drift:hover {
+        .btn-lullaby:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 14px rgba(196, 90, 46, 0.2);
         }
@@ -134,7 +135,7 @@
         /* Hero */
         .hero {
             padding: 5rem 0 6rem;
-            background: radial-gradient(ellipse at 30% 40%, var(--drift-glow) 0%, var(--drift-light) 45%, #fefaf7 100%);
+            background: radial-gradient(ellipse at 35% 40%, var(--lullaby-glow) 0%, var(--lullaby-light) 45%, #fefaf7 100%);
             position: relative;
             overflow: hidden;
         }
@@ -142,12 +143,12 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -15%;
-            left: -10%;
-            width: 60%;
-            height: 60%;
+            top: -10%;
+            right: -8%;
+            width: 55%;
+            height: 55%;
             background: radial-gradient(circle, rgba(245, 160, 107, 0.1), transparent 70%);
-            filter: blur(45px);
+            filter: blur(42px);
             pointer-events: none;
         }
 
@@ -166,26 +167,26 @@
 
         .hero-tag {
             background: rgba(196, 90, 46, 0.1);
-            border: 1px solid var(--drift-soft);
+            border: 1px solid var(--lullaby-soft);
             border-radius: 50px;
             padding: 0.3rem 1rem;
             display: inline-block;
             font-weight: 500;
             font-size: 0.75rem;
-            color: var(--drift-deep);
+            color: var(--lullaby-deep);
             margin-bottom: 1.5rem;
         }
 
         .hero-text h1 {
             font-size: 3.6rem;
-            font-weight: 700;
+            font-weight: 800;
             line-height: 1.2;
             margin-bottom: 1.2rem;
             color: #3d2b1d;
         }
 
-        .drift-word {
-            background: linear-gradient(135deg, var(--drift-deep), var(--drift-warm));
+        .lullaby-word {
+            background: linear-gradient(135deg, var(--lullaby-deep), var(--lullaby-warm));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -206,8 +207,8 @@
 
         .stat-item h3 {
             font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--drift-deep);
+            font-weight: 800;
+            color: var(--lullaby-deep);
         }
 
         .hero-visual {
@@ -218,11 +219,11 @@
             border-radius: 56px;
             padding: 1.5rem;
             box-shadow: var(--shadow-soft);
-            border: 1px solid var(--drift-soft);
+            border: 1px solid var(--lullaby-soft);
         }
 
         .btn-primary {
-            background: linear-gradient(115deg, var(--drift-deep), var(--drift-warm));
+            background: linear-gradient(115deg, var(--lullaby-deep), var(--lullaby-warm));
             padding: 0.9rem 2.2rem;
             border-radius: 50px;
             color: white;
@@ -251,7 +252,7 @@
 
         .section-header h2 {
             font-size: 2.4rem;
-            font-weight: 700;
+            font-weight: 800;
             color: #3d2b1d;
             margin-bottom: 0.6rem;
         }
@@ -269,20 +270,20 @@
             gap: 2rem;
         }
 
-        .drift-card {
+        .lullaby-card {
             background: rgba(255, 242, 234, 0.7);
             backdrop-filter: blur(4px);
             border-radius: var(--radius-card);
             padding: 2rem 1.8rem;
-            border: 1px solid var(--drift-soft);
+            border: 1px solid var(--lullaby-soft);
             transition: all 0.3s ease;
             box-shadow: var(--shadow-soft);
             cursor: pointer;
         }
 
-        .drift-card:hover {
+        .lullaby-card:hover {
             transform: translateY(-7px);
-            border-color: var(--drift-glow);
+            border-color: var(--lullaby-glow);
             box-shadow: var(--glow-soft);
             background: rgba(255, 248, 242, 0.92);
         }
@@ -292,19 +293,19 @@
             margin-bottom: 1rem;
         }
 
-        /* Mist row */
-        .mist-row {
+        /* Soothe row */
+        .soothe-row {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
-            background: var(--drift-light);
+            background: var(--lullaby-light);
             border-radius: 52px;
             padding: 2.5rem;
-            border: 1px solid var(--drift-soft);
+            border: 1px solid var(--lullaby-soft);
             box-shadow: var(--shadow-soft);
         }
 
-        .mist-cell {
+        .soothe-cell {
             flex: 1;
             text-align: center;
             padding: 0.6rem;
@@ -324,13 +325,13 @@
             flex: 1;
             min-width: 270px;
             padding: 2rem;
-            border: 1px solid var(--drift-soft);
+            border: 1px solid var(--lullaby-soft);
             transition: 0.25s;
             box-shadow: var(--shadow-soft);
         }
 
         .price-card.featured {
-            border-top: 5px solid var(--drift-deep);
+            border-top: 5px solid var(--lullaby-deep);
             transform: scale(1.02);
             background: #fffbf7;
             box-shadow: var(--glow-soft);
@@ -338,17 +339,17 @@
 
         .price-number {
             font-size: 2.9rem;
-            font-weight: 700;
-            color: var(--drift-deep);
+            font-weight: 800;
+            color: var(--lullaby-deep);
             margin: 1rem 0;
         }
 
         .btn-outline {
-            border: 1.5px solid var(--drift-deep);
+            border: 1.5px solid var(--lullaby-deep);
             padding: 0.7rem 1.8rem;
             border-radius: 50px;
             background: transparent;
-            color: var(--drift-deep);
+            color: var(--lullaby-deep);
             font-weight: 600;
             text-decoration: none;
             display: inline-block;
@@ -357,16 +358,16 @@
         }
 
         .btn-outline:hover {
-            background: var(--drift-deep);
+            background: var(--lullaby-deep);
             color: white;
         }
 
         .cta-section {
-            background: linear-gradient(125deg, var(--drift-light), #fff0e6);
+            background: linear-gradient(125deg, var(--lullaby-light), #fff0e6);
             border-radius: 52px;
             text-align: center;
             padding: 3rem;
-            border: 1px solid var(--drift-soft);
+            border: 1px solid var(--lullaby-soft);
             box-shadow: var(--shadow-soft);
         }
 
@@ -376,7 +377,7 @@
             border-radius: 38px;
             padding: 2.5rem;
             margin: 2rem 0;
-            border: 1px solid var(--drift-soft);
+            border: 1px solid var(--lullaby-soft);
             scroll-margin-top: 90px;
             box-shadow: var(--shadow-soft);
         }
@@ -384,7 +385,7 @@
         .privacy-section h2, .privacy-section h3 {
             color: #3d2b1d;
             margin-top: 1.8rem;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .privacy-section p, .privacy-section li {
@@ -395,14 +396,14 @@
             background: linear-gradient(115deg, #f0e0d4, #fae8dd);
             color: #b08066;
             padding: 3rem 0 2rem;
-            border-top: 1px solid var(--drift-soft);
+            border-top: 1px solid var(--lullaby-soft);
         }
 
         .back-to-top {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: linear-gradient(115deg, var(--drift-deep), var(--drift-warm));
+            background: linear-gradient(115deg, var(--lullaby-deep), var(--lullaby-warm));
             color: white;
             width: 46px;
             height: 46px;
@@ -442,15 +443,15 @@
             border-radius: 32px;
             max-width: 380px;
             text-align: center;
-            border: 1px solid var(--drift-soft);
+            border: 1px solid var(--lullaby-soft);
             box-shadow: var(--glow-soft);
         }
-        .info-modal-content h3 { color: var(--drift-deep); margin-bottom: 1rem; }
+        .info-modal-content h3 { color: var(--lullaby-deep); margin-bottom: 1rem; }
         .info-modal-content p { color: #8a644c; margin-bottom: 0.5rem; }
         .info-modal-content button {
             margin-top: 1.5rem;
             padding: 0.5rem 1.5rem;
-            background: var(--drift-deep);
+            background: var(--lullaby-deep);
             color: white;
             border: none;
             border-radius: 40px;
@@ -466,27 +467,27 @@
 </head>
 <body>
 
-<div class="mist-pattern"></div>
+<div class="calm-wave"></div>
 
 <div id="demoModal" class="info-modal">
     <div class="info-modal-content">
-        <i class="fas fa-cloud-sun" style="font-size: 3rem; color: #f5a06b;"></i>
-        <h3>Drift AI</h3>
-        <p>This is a gentle morning mist. In a live environment, this would open your personal drift space.</p>
-        <button onclick="closeModal()">Float back</button>
+        <i class="fas fa-moon" style="font-size: 3rem; color: #f5a06b;"></i>
+        <h3>Lullaby AI</h3>
+        <p>This is a gentle lullaby. In a live environment, this would open your personal soothing space.</p>
+        <button onclick="closeModal()">Rest here</button>
     </div>
 </div>
 
 <nav class="navbar">
     <div class="container nav-wrapper">
-        <div class="logo">Drift<span style="color:#f5a06b;">🌫️</span></div>
+        <div class="logo">Lullaby<span style="color:#f5a06b;">🎵</span></div>
         <div class="nav-links">
             <a href="#home">Home</a>
-            <a href="#float">Float</a>
-            <a href="#mist">Mist</a>
+            <a href="#soothe">Soothe</a>
+            <a href="#calm">Calm</a>
             <a href="#pricing">Plans</a>
             <a href="#privacy">Trust</a>
-            <a href="#" class="btn-drift" onclick="openModal()">Begin drift</a>
+            <a href="#" class="btn-lullaby" onclick="openModal()">Hear lullaby</a>
         </div>
     </div>
 </nav>
@@ -495,14 +496,14 @@
     <section id="home" class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
-                <div class="hero-tag"><i class="fas fa-cloud"></i> Morning mist intelligence</div>
-                <h1>AI that <span class="drift-word">drifts gently</span> with you</h1>
-                <p>Drift AI brings soft, mist-like intelligence to your world. Like morning fog over a quiet lake — ethical, intuitive, and beautifully human.</p>
-                <a href="#" class="btn-primary" onclick="openModal()"><i class="fas fa-feather"></i> Enter the drift</a>
+                <div class="hero-tag"><i class="fas fa-moon"></i> Soothing intelligence</div>
+                <h1>AI that <span class="lullaby-word">sings gently</span> to you</h1>
+                <p>Lullaby AI brings soft, soothing intelligence to your world. Like a quiet song at twilight — ethical, intuitive, and beautifully human.</p>
+                <a href="#" class="btn-primary" onclick="openModal()"><i class="fas fa-head-side-heart"></i> Rest in lullaby</a>
                 <div class="hero-stats">
-                    <div class="stat-item"><h3>34k+</h3><span>drifting souls</span></div>
-                    <div class="stat-item"><h3>4.99★</h3><span>mist rating</span></div>
-                    <div class="stat-item"><h3>∞</h3><span>gentle flow</span></div>
+                    <div class="stat-item"><h3>36k+</h3><span>soothed souls</span></div>
+                    <div class="stat-item"><h3>4.99★</h3><span>gentle rating</span></div>
+                    <div class="stat-item"><h3>∞</h3><span>peaceful care</span></div>
                 </div>
             </div>
             <div class="hero-visual">
@@ -521,28 +522,28 @@
         </div>
     </section>
 
-    <section id="float">
+    <section id="soothe">
         <div class="container">
             <div class="section-header">
-                <h2>Ways drift flows with you</h2>
-                <p>Gentle features that float like morning mist</p>
+                <h2>Ways lullaby soothes you</h2>
+                <p>Gentle features that sing like evening song</p>
             </div>
             <div class="cards-grid">
-                <div class="drift-card" onclick="openModal()"><div class="card-icon">🌫️</div><h3>Mist Chat</h3><p>Conversations that float gently, like fog over still water.</p></div>
-                <div class="drift-card" onclick="openModal()"><div class="card-icon">✨</div><h3>Drifting Insights</h3><p>Beautiful, gentle analytics that arrive like morning light through mist.</p></div>
-                <div class="drift-card" onclick="openModal()"><div class="card-icon">🍃</div><h3>Soft Current</h3><p>Automation that moves like a gentle stream — quiet and effortless.</p></div>
-                <div class="drift-card" onclick="openModal()"><div class="card-icon">🕯️</div><h3>Sacred Mist</h3><p>Privacy-first, bias-aware, and transparent as morning air.</p></div>
+                <div class="lullaby-card" onclick="openModal()"><div class="card-icon">🎵</div><h3>Lullaby Chat</h3><p>Conversations that flow like a gentle melody — soft and comforting.</p></div>
+                <div class="lullaby-card" onclick="openModal()"><div class="card-icon">🌙</div><h3>Soothing Insights</h3><p>Beautiful, gentle analytics that arrive like twilight stars.</p></div>
+                <div class="lullaby-card" onclick="openModal()"><div class="card-icon">🍃</div><h3>Peaceful Current</h3><p>Automation that moves like a calm river — quiet and effortless.</p></div>
+                <div class="lullaby-card" onclick="openModal()"><div class="card-icon">🕯️</div><h3>Sacred Song</h3><p>Privacy-first, bias-aware, and transparent as moonlight.</p></div>
             </div>
         </div>
     </section>
 
-    <section id="mist">
+    <section id="calm">
         <div class="container">
-            <div class="mist-row">
-                <div class="mist-cell"><i class="fas fa-feather-alt" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">Feather-light</h3><p>Blazing fast, soft touch</p></div>
-                <div class="mist-cell"><i class="fas fa-globe" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">52 languages</h3><p>Global drift glow</p></div>
-                <div class="mist-cell"><i class="fas fa-shield-heart" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">Yours always</h3><p>Never trained on</p></div>
-                <div class="mist-cell"><i class="fas fa-cloud-sun" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">Drift by soul</h3><p>Built with empathy</p></div>
+            <div class="soothe-row">
+                <div class="soothe-cell"><i class="fas fa-feather-alt" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">Feather-soft</h3><p>Blazing fast, gentle touch</p></div>
+                <div class="soothe-cell"><i class="fas fa-globe" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">54 languages</h3><p>Global lullaby glow</p></div>
+                <div class="soothe-cell"><i class="fas fa-shield-heart" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">Yours always</h3><p>Never trained on</p></div>
+                <div class="soothe-cell"><i class="fas fa-moon" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">Soothe by soul</h3><p>Built with empathy</p></div>
             </div>
         </div>
     </section>
@@ -550,18 +551,18 @@
     <section id="pricing">
         <div class="container">
             <div class="section-header">
-                <h2>Gentle plans for every drift</h2>
-                <p>Pricing as soft as morning mist</p>
+                <h2>Gentle plans for every rest</h2>
+                <p>Pricing as soft as a lullaby</p>
             </div>
             <div class="pricing-grid">
-                <div class="price-card"><h3>Vapor</h3><div class="price-number">$0</div><p>280 messages/month, basic drift, community mist.</p>
-                    <a href="#" class="btn-outline" style="margin-top:1.5rem; display:inline-block;" onclick="openModal()">Start vapor</a>
+                <div class="price-card"><h3>Whisper</h3><div class="price-number">$0</div><p>300 messages/month, basic soothe, community peace.</p>
+                    <a href="#" class="btn-outline" style="margin-top:1.5rem; display:inline-block;" onclick="openModal()">Hear whisper</a>
                 </div>
-                <div class="price-card featured"><h3>Drift <span style="background:#ffe0cc; font-size:0.7rem; padding:0.2rem 0.6rem; border-radius:40px;">🌫️ Most gentle</span></h3><div class="price-number">$10<span style="font-size:1rem;">/mo</span></div><p>Unlimited messages, priority drift, full API.</p>
-                    <a href="#" class="btn-primary" onclick="openModal()">Float with drift</a>
+                <div class="price-card featured"><h3>Lullaby <span style="background:#ffe0cc; font-size:0.7rem; padding:0.2rem 0.6rem; border-radius:40px;">🎵 Most soothing</span></h3><div class="price-number">$9<span style="font-size:1rem;">/mo</span></div><p>Unlimited messages, priority lullaby, full API.</p>
+                    <a href="#" class="btn-primary" onclick="openModal()">Rest in lullaby</a>
                 </div>
-                <div class="price-card"><h3>Mist</h3><div class="price-number">$27<span style="font-size:1rem;">/mo</span></div><p>Team features, analytics, custom mist.</p>
-                    <a href="#" class="btn-outline" onclick="openModal()">Enter mist</a>
+                <div class="price-card"><h3>Twilight</h3><div class="price-number">$25<span style="font-size:1rem;">/mo</span></div><p>Team features, analytics, custom soothe.</p>
+                    <a href="#" class="btn-outline" onclick="openModal()">Enter twilight</a>
                 </div>
             </div>
         </div>
@@ -569,41 +570,41 @@
 
     <div class="container">
         <div class="cta-section">
-            <h2 style="font-size: 2rem;">Let gentle mist carry you forward</h2>
-            <p style="margin: 1rem 0 2rem; opacity: 0.85;">Join thousands who've found soft, drifting intelligence with Drift.</p>
-            <a href="#" class="btn-primary" onclick="openModal()"><i class="fas fa-cloud-sun"></i> Start your drift trial</a>
+            <h2 style="font-size: 2rem;">Let gentle lullaby rest your mind</h2>
+            <p style="margin: 1rem 0 2rem; opacity: 0.85;">Join thousands who've found soft, soothing intelligence with Lullaby.</p>
+            <a href="#" class="btn-primary" onclick="openModal()"><i class="fas fa-moon"></i> Start your lullaby trial</a>
         </div>
     </div>
 
     <div class="container" id="privacy">
         <div class="privacy-section">
-            <h2><i class="fas fa-leaf" style="color:#f5a06b;"></i> Sacred Drift — Our Gentle Vow</h2>
-            <p><strong>Last gentle drift:</strong> May 2025 | Drift Labs holds your trust as soft as morning mist.</p>
+            <h2><i class="fas fa-leaf" style="color:#f5a06b;"></i> Sacred Lullaby — Our Soothing Vow</h2>
+            <p><strong>Last gentle song:</strong> May 2025 | Lullaby Labs holds your trust as soft as evening song.</p>
             
             <h3>1. What we gather</h3>
-            <p>Account essence, conversation drift (encrypted at rest), and gentle usage echoes. You remain the sole owner of your drifting light.</p>
+            <p>Account essence, conversation lullaby (encrypted at rest), and gentle usage echoes. You remain the sole owner of your soothing light.</p>
             
             <h3>2. How your light is honoured</h3>
             <p>To nurture our AI, personalise your journey, handle billing, and support you. Zero selling. Zero advertising training. Zero dark patterns.</p>
             
-            <h3>3. Keeping your drift safe</h3>
+            <h3>3. Keeping your lullaby safe</h3>
             <p>You may delete any conversation instantly. Account data vanishes when you wish. Full gentle export available anytime.</p>
             
             <h3>4. Trusted guardians</h3>
             <p>We partner with secure infrastructure providers under strict data pledges. All data travels encrypted and rests encrypted.</p>
             
-            <h3>5. Your drifting rights</h3>
+            <h3>5. Your soothing rights</h3>
             <p>Access, correct, delete, restrict, or take your data elsewhere. Our privacy team is always here for you.</p>
             
             <h3>6. Young souls</h3>
-            <p>Drift is crafted for humans 16 and over. We do not knowingly collect from younger hearts.</p>
+            <p>Lullaby is crafted for humans 16 and over. We do not knowingly collect from younger hearts.</p>
             
             <h3>7. Across borders</h3>
             <p>Data may travel the globe under Standard Contractual Clauses — always protected, always respected.</p>
             
-            <h3>8. When drift evolves</h3>
+            <h3>8. When lullaby evolves</h3>
             <p>Material changes will be shared with you. Our Data Protection Officer is always available.</p>
-            <p style="margin-top:1.5rem;"><i class="fas fa-cloud-sun" style="color:#f5a06b;"></i> Drift — Intelligence that floats gently with you.</p>
+            <p style="margin-top:1.5rem;"><i class="fas fa-moon" style="color:#f5a06b;"></i> Lullaby — Intelligence that sings gently to you.</p>
         </div>
     </div>
 </main>
@@ -612,17 +613,17 @@
     <div class="container">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
             <div>
-                <h3 style="color:#3d2b1d;">Drift<span style="color:#f5a06b;">🌫️</span></h3>
-                <p style="max-width: 210px; margin-top: 0.5rem;">Your gentle mist of wisdom.</p>
+                <h3 style="color:#3d2b1d;">Lullaby<span style="color:#f5a06b;">🎵</span></h3>
+                <p style="max-width: 210px; margin-top: 0.5rem;">Your gentle song of wisdom.</p>
                 <div style="margin-top: 1rem;">
                     <a href="#" onclick="openModal(); return false;" style="color:#b08066; margin-right: 1rem;"><i class="fab fa-twitter"></i></a>
                     <a href="#" onclick="openModal(); return false;" style="color:#b08066; margin-right: 1rem;"><i class="fab fa-instagram"></i></a>
-                    <a href="#" onclick="openModal(); return false;" style="color:#b08066;"><i class="fab fa-discord"></i></a>
+                    <a href="#" onclick="openModal(); return false;" style="color:#b08066;"><i class="fab fa-spotify"></i></a>
                 </div>
             </div>
             <div>
-                <h4>Float</h4>
-                <p><a href="#float" style="color:#b08066; text-decoration:none;">Features</a><br>
+                <h4>Soothe</h4>
+                <p><a href="#soothe" style="color:#b08066; text-decoration:none;">Features</a><br>
                    <a href="#pricing" style="color:#b08066; text-decoration:none;">Pricing</a><br>
                    <a href="#" onclick="openModal(); return false;" style="color:#b08066;">API</a><br>
                    <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Status</a></p>
@@ -637,14 +638,14 @@
             <div>
                 <h4>Trust</h4>
                 <p><a href="#privacy" style="color:#b08066; text-decoration:none;">Privacy Vow</a><br>
-                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Terms of Drift</a><br>
+                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Terms of Lullaby</a><br>
                    <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Ethics Charter</a><br>
                    <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Security</a></p>
             </div>
         </div>
         <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #ffe0cc; margin-top: 2rem; font-size: 0.8rem;">
-            <p>© 2025 Drift Labs — Intelligence that drifts gently with you.</p>
-            <p style="margin-top: 0.5rem;">Drifting in trust · Flowing with grace</p>
+            <p>© 2025 Lullaby Labs — Intelligence that sings gently to you.</p>
+            <p style="margin-top: 0.5rem;">Soothed in trust · Resting in grace</p>
         </div>
     </div>
 </footer>
