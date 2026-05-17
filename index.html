@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>NovaLume | AI with a Warm Glow</title>
-    <meta name="description" content="NovaLume brings radiant artificial intelligence to your daily workflow. Smart, gentle, and beautifully illuminated — AI that feels like sunlight.">
-    <meta name="keywords" content="AI, warm AI, peach AI, gentle intelligence, smart automation, novalume">
-    <meta name="author" content="NovaLume Labs">
+    <title>Drift AI | Soft Intelligence Like Morning Mist</title>
+    <meta name="description" content="Drift AI brings soft, mist-like intelligence to your world. Gentle, intuitive, and beautifully human — like morning fog over a quiet lake.">
+    <meta name="keywords" content="drift AI, soft mist, gentle intelligence, peach warmth, ethical AI">
+    <meta name="author" content="Drift Labs">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,54 +17,77 @@
         }
 
         body {
-            font-family: 'Instrument Sans', sans-serif;
-            background: linear-gradient(145deg, #fffaf7 0%, #fff5ed 100%);
-            color: #3c2a23;
+            font-family: 'Space Grotesk', sans-serif;
+            background: #fefaf7;
+            color: #3d2b1d;
             line-height: 1.5;
             scroll-behavior: smooth;
         }
 
         :root {
-            --peach-dawn: #ffe4d0;
-            --peach-sun: #ffcdb5;
-            --peach-glow: #ffb88c;
-            --coral-light: #f09d6b;
-            --terracotta: #c66a42;
-            --shadow-warm: 0 12px 28px rgba(198, 106, 66, 0.06);
-            --glow-warm: 0 0 28px rgba(255, 184, 140, 0.35);
-            --radius-xl: 36px;
-            --radius-lg: 28px;
+            --drift-light: #fff0e8;
+            --drift-soft: #ffe0cc;
+            --drift-glow: #ffccae;
+            --drift-warm: #f5a06b;
+            --drift-deep: #c45a2e;
+            --shadow-soft: 0 12px 28px rgba(196, 90, 46, 0.05);
+            --glow-soft: 0 0 28px rgba(245, 160, 107, 0.28);
+            --radius-card: 32px;
+        }
+
+        /* Mist wave pattern */
+        .mist-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: repeating-linear-gradient(100deg, rgba(255, 204, 174, 0.06) 0px, rgba(255, 204, 174, 0.06) 1px, transparent 1px, transparent 35px);
+            z-index: 0;
+        }
+        .mist-pattern::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(245, 160, 107, 0.04) 0px, rgba(245, 160, 107, 0.04) 1px, transparent 1px, transparent 25px);
+            pointer-events: none;
         }
 
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 32px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Navigation with warm glow */
+        /* Navigation */
         .navbar {
-            background: rgba(255, 250, 247, 0.92);
-            backdrop-filter: blur(12px);
+            background: rgba(254, 250, 247, 0.94);
+            backdrop-filter: blur(14px);
             position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--peach-dawn);
+            z-index: 101;
+            border-bottom: 1px solid var(--drift-soft);
         }
 
         .nav-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 0.9rem 0;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
         .logo {
-            font-size: 1.9rem;
+            font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #c66a42, #f09d6b);
+            background: linear-gradient(125deg, #c45a2e, #f5a06b);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -81,45 +104,50 @@
         .nav-links a {
             text-decoration: none;
             font-weight: 500;
-            color: #8b6954;
+            color: #8a644c;
             transition: 0.2s;
         }
 
         .nav-links a:hover {
-            color: var(--terracotta);
+            color: var(--drift-deep);
         }
 
-        .btn-nova {
-            background: linear-gradient(115deg, var(--terracotta), var(--coral-light));
-            padding: 0.5rem 1.5rem;
-            border-radius: 60px;
+        .btn-drift {
+            background: linear-gradient(115deg, var(--drift-deep), var(--drift-warm));
+            padding: 0.5rem 1.6rem;
+            border-radius: 50px;
             color: white;
             font-weight: 600;
             text-decoration: none;
             transition: 0.2s;
-            box-shadow: 0 2px 8px rgba(198, 106, 66, 0.15);
+            box-shadow: 0 2px 8px rgba(196, 90, 46, 0.12);
+            display: inline-block;
+            cursor: pointer;
+            border: none;
         }
 
-        .btn-nova:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 14px rgba(198, 106, 66, 0.2);
+        .btn-drift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(196, 90, 46, 0.2);
         }
 
-        /* Hero with radiant peach glow */
+        /* Hero */
         .hero {
             padding: 5rem 0 6rem;
-            background: radial-gradient(ellipse at 40% 30%, var(--peach-sun) 0%, var(--peach-dawn) 45%, #fffaf7 100%);
+            background: radial-gradient(ellipse at 30% 40%, var(--drift-glow) 0%, var(--drift-light) 45%, #fefaf7 100%);
             position: relative;
+            overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 70% 20%, rgba(255, 184, 140, 0.3), transparent 60%);
+            top: -15%;
+            left: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(245, 160, 107, 0.1), transparent 70%);
+            filter: blur(45px);
             pointer-events: none;
         }
 
@@ -129,44 +157,43 @@
             align-items: center;
             gap: 3rem;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
-        .hero-content {
+        .hero-text {
             flex: 1;
         }
 
-        .hero-badge {
-            background: rgba(240, 157, 107, 0.12);
-            border: 1px solid var(--peach-sun);
-            border-radius: 100px;
+        .hero-tag {
+            background: rgba(196, 90, 46, 0.1);
+            border: 1px solid var(--drift-soft);
+            border-radius: 50px;
             padding: 0.3rem 1rem;
             display: inline-block;
             font-weight: 500;
             font-size: 0.75rem;
-            color: var(--terracotta);
+            color: var(--drift-deep);
             margin-bottom: 1.5rem;
         }
 
-        .hero-content h1 {
+        .hero-text h1 {
             font-size: 3.6rem;
             font-weight: 700;
             line-height: 1.2;
-            letter-spacing: -0.01em;
-            color: #3c2a23;
             margin-bottom: 1.2rem;
+            color: #3d2b1d;
         }
 
-        .hero-glow-text {
-            background: linear-gradient(135deg, var(--terracotta), var(--coral-light));
+        .drift-word {
+            background: linear-gradient(135deg, var(--drift-deep), var(--drift-warm));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .hero-content p {
+        .hero-text p {
             font-size: 1.2rem;
-            color: #9b7560;
+            color: #9a735b;
             max-width: 90%;
             margin-bottom: 2rem;
         }
@@ -180,53 +207,59 @@
         .stat-item h3 {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--terracotta);
+            color: var(--drift-deep);
         }
 
-        .hero-image {
+        .hero-visual {
             flex: 1;
             text-align: center;
-            background: linear-gradient(145deg, #fff3ec, #ffefe7);
-            border-radius: 48px;
+            background: rgba(255, 242, 234, 0.55);
+            backdrop-filter: blur(8px);
+            border-radius: 56px;
             padding: 1.5rem;
-            box-shadow: var(--shadow-warm);
-            border: 1px solid var(--peach-dawn);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--drift-soft);
         }
 
-        .btn-primary-nova {
-            background: linear-gradient(115deg, var(--terracotta), var(--coral-light));
-            padding: 0.9rem 2rem;
-            border-radius: 60px;
+        .btn-primary {
+            background: linear-gradient(115deg, var(--drift-deep), var(--drift-warm));
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
             color: white;
             font-weight: 600;
             display: inline-block;
             text-decoration: none;
             transition: 0.2s;
-            box-shadow: var(--shadow-warm);
+            box-shadow: var(--shadow-soft);
+            cursor: pointer;
+            border: none;
         }
 
-        .btn-primary-nova:hover {
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 24px rgba(198, 106, 66, 0.2);
+            box-shadow: 0 10px 22px rgba(196, 90, 46, 0.2);
         }
 
         section {
             padding: 5rem 0;
         }
 
-        .section-title {
-            font-size: 2.3rem;
-            font-weight: 700;
+        .section-header {
             text-align: center;
-            margin-bottom: 1rem;
-            color: #3c2a23;
+            margin-bottom: 3rem;
         }
 
-        .section-sub {
-            text-align: center;
-            max-width: 650px;
-            margin: 0 auto 3rem;
-            color: #9b7560;
+        .section-header h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #3d2b1d;
+            margin-bottom: 0.6rem;
+        }
+
+        .section-header p {
+            color: #9a735b;
+            max-width: 580px;
+            margin: 0 auto;
         }
 
         /* Cards */
@@ -236,47 +269,45 @@
             gap: 2rem;
         }
 
-        .nova-card {
-            background: rgba(255, 246, 240, 0.85);
+        .drift-card {
+            background: rgba(255, 242, 234, 0.7);
             backdrop-filter: blur(4px);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            border: 1px solid var(--peach-dawn);
-            transition: all 0.25s;
-            box-shadow: var(--shadow-warm);
+            border-radius: var(--radius-card);
+            padding: 2rem 1.8rem;
+            border: 1px solid var(--drift-soft);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-soft);
+            cursor: pointer;
         }
 
-        .nova-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--peach-glow);
-            box-shadow: var(--glow-warm);
+        .drift-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--drift-glow);
+            box-shadow: var(--glow-soft);
+            background: rgba(255, 248, 242, 0.92);
         }
 
         .card-icon {
-            font-size: 2.3rem;
-            background: linear-gradient(135deg, var(--terracotta), var(--coral-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1.2rem;
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
         }
 
-        /* Features grid */
-        .features-grid {
+        /* Mist row */
+        .mist-row {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
-            background: var(--peach-dawn);
-            border-radius: 48px;
+            background: var(--drift-light);
+            border-radius: 52px;
             padding: 2.5rem;
-            border: 1px solid var(--peach-sun);
-            box-shadow: var(--shadow-warm);
+            border: 1px solid var(--drift-soft);
+            box-shadow: var(--shadow-soft);
         }
 
-        .feature-block {
+        .mist-cell {
             flex: 1;
             text-align: center;
-            padding: 0.5rem;
+            padding: 0.6rem;
         }
 
         /* Pricing */
@@ -288,93 +319,94 @@
         }
 
         .price-card {
-            background: rgba(255, 246, 240, 0.9);
+            background: rgba(255, 242, 234, 0.9);
             border-radius: 32px;
             flex: 1;
             min-width: 270px;
             padding: 2rem;
-            border: 1px solid var(--peach-dawn);
-            transition: 0.2s;
-            box-shadow: var(--shadow-warm);
+            border: 1px solid var(--drift-soft);
+            transition: 0.25s;
+            box-shadow: var(--shadow-soft);
         }
 
         .price-card.featured {
-            border-top: 4px solid var(--terracotta);
+            border-top: 5px solid var(--drift-deep);
             transform: scale(1.02);
             background: #fffbf7;
-            box-shadow: var(--glow-warm);
+            box-shadow: var(--glow-soft);
         }
 
-        .price {
-            font-size: 2.8rem;
+        .price-number {
+            font-size: 2.9rem;
             font-weight: 700;
-            color: var(--terracotta);
+            color: var(--drift-deep);
             margin: 1rem 0;
         }
 
-        .btn-outline-nova {
-            border: 1.5px solid var(--terracotta);
+        .btn-outline {
+            border: 1.5px solid var(--drift-deep);
             padding: 0.7rem 1.8rem;
-            border-radius: 60px;
+            border-radius: 50px;
             background: transparent;
-            color: var(--terracotta);
+            color: var(--drift-deep);
             font-weight: 600;
             text-decoration: none;
             display: inline-block;
             transition: 0.2s;
+            cursor: pointer;
         }
 
-        .btn-outline-nova:hover {
-            background: var(--terracotta);
+        .btn-outline:hover {
+            background: var(--drift-deep);
             color: white;
         }
 
-        .cta-nova {
-            background: linear-gradient(125deg, var(--peach-dawn), #fff0e6);
-            border-radius: 48px;
+        .cta-section {
+            background: linear-gradient(125deg, var(--drift-light), #fff0e6);
+            border-radius: 52px;
             text-align: center;
             padding: 3rem;
-            border: 1px solid var(--peach-sun);
-            box-shadow: var(--shadow-warm);
+            border: 1px solid var(--drift-soft);
+            box-shadow: var(--shadow-soft);
         }
 
         /* Privacy */
-        .privacy-nova {
-            background: #fff3ec;
-            border-radius: 36px;
+        .privacy-section {
+            background: #fff5ef;
+            border-radius: 38px;
             padding: 2.5rem;
             margin: 2rem 0;
-            border: 1px solid var(--peach-dawn);
+            border: 1px solid var(--drift-soft);
             scroll-margin-top: 90px;
-            box-shadow: var(--shadow-warm);
+            box-shadow: var(--shadow-soft);
         }
 
-        .privacy-nova h2, .privacy-nova h3 {
-            color: #3c2a23;
+        .privacy-section h2, .privacy-section h3 {
+            color: #3d2b1d;
             margin-top: 1.8rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        .privacy-nova p, .privacy-nova li {
-            color: #9b7560;
+        .privacy-section p, .privacy-section li {
+            color: #9a735b;
         }
 
         footer {
-            background: linear-gradient(115deg, #f5e6dc, #fae8dd);
-            color: #b0886e;
+            background: linear-gradient(115deg, #f0e0d4, #fae8dd);
+            color: #b08066;
             padding: 3rem 0 2rem;
-            border-top: 1px solid var(--peach-dawn);
+            border-top: 1px solid var(--drift-soft);
         }
 
         .back-to-top {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: linear-gradient(115deg, var(--terracotta), var(--coral-light));
+            background: linear-gradient(115deg, var(--drift-deep), var(--drift-warm));
             color: white;
-            width: 44px;
-            height: 44px;
-            border-radius: 30px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -382,147 +414,196 @@
             opacity: 0.8;
             transition: 0.2s;
             z-index: 99;
-            box-shadow: var(--shadow-warm);
+            box-shadow: var(--shadow-soft);
         }
 
         .back-to-top:hover {
             opacity: 1;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .info-modal-content {
+            background: #fffaf5;
+            padding: 2rem;
+            border-radius: 32px;
+            max-width: 380px;
+            text-align: center;
+            border: 1px solid var(--drift-soft);
+            box-shadow: var(--glow-soft);
+        }
+        .info-modal-content h3 { color: var(--drift-deep); margin-bottom: 1rem; }
+        .info-modal-content p { color: #8a644c; margin-bottom: 0.5rem; }
+        .info-modal-content button {
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            background: var(--drift-deep);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
         }
 
         @media (max-width: 800px) {
-            .hero-content h1 { font-size: 2.2rem; }
+            .hero-text h1 { font-size: 2.2rem; }
             .nav-wrapper { flex-direction: column; }
-            .section-title { font-size: 1.8rem; }
+            .section-header h2 { font-size: 1.9rem; }
         }
     </style>
 </head>
 <body>
 
+<div class="mist-pattern"></div>
+
+<div id="demoModal" class="info-modal">
+    <div class="info-modal-content">
+        <i class="fas fa-cloud-sun" style="font-size: 3rem; color: #f5a06b;"></i>
+        <h3>Drift AI</h3>
+        <p>This is a gentle morning mist. In a live environment, this would open your personal drift space.</p>
+        <button onclick="closeModal()">Float back</button>
+    </div>
+</div>
+
 <nav class="navbar">
     <div class="container nav-wrapper">
-        <div class="logo">Nova<span style="color:#f09d6b;">Lume</span></div>
+        <div class="logo">Drift<span style="color:#f5a06b;">🌫️</span></div>
         <div class="nav-links">
             <a href="#home">Home</a>
-            <a href="#features">Glow</a>
-            <a href="#radiance">Radiance</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#privacy">Privacy</a>
-            <a href="#" class="btn-nova"><i class="fas fa-sun"></i> Illuminate</a>
+            <a href="#float">Float</a>
+            <a href="#mist">Mist</a>
+            <a href="#pricing">Plans</a>
+            <a href="#privacy">Trust</a>
+            <a href="#" class="btn-drift" onclick="openModal()">Begin drift</a>
         </div>
     </div>
 </nav>
 
 <main>
-    <!-- Hero -->
     <section id="home" class="hero">
         <div class="container hero-grid">
-            <div class="hero-content">
-                <div class="hero-badge"><i class="fas fa-spa"></i> Radiant intelligence</div>
-                <h1>AI that <span class="hero-glow-text">glows</span> with you</h1>
-                <p>NovaLume brings warmth and clarity to artificial intelligence. Smart assistance that feels natural, ethical, and beautifully illuminated.</p>
-                <a href="#" class="btn-primary-nova"><i class="fas fa-candle"></i> Begin your glow</a>
+            <div class="hero-text">
+                <div class="hero-tag"><i class="fas fa-cloud"></i> Morning mist intelligence</div>
+                <h1>AI that <span class="drift-word">drifts gently</span> with you</h1>
+                <p>Drift AI brings soft, mist-like intelligence to your world. Like morning fog over a quiet lake — ethical, intuitive, and beautifully human.</p>
+                <a href="#" class="btn-primary" onclick="openModal()"><i class="fas fa-feather"></i> Enter the drift</a>
                 <div class="hero-stats">
-                    <div class="stat-item"><h3>12k+</h3><span>illuminated minds</span></div>
-                    <div class="stat-item"><h3>99%</h3><span>warmth rating</span></div>
-                    <div class="stat-item"><h3>always</h3><span>on your side</span></div>
+                    <div class="stat-item"><h3>34k+</h3><span>drifting souls</span></div>
+                    <div class="stat-item"><h3>4.99★</h3><span>mist rating</span></div>
+                    <div class="stat-item"><h3>∞</h3><span>gentle flow</span></div>
                 </div>
             </div>
-            <div class="hero-image">
-                <svg width="100%" height="260" viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="500" height="280" rx="32" fill="#FFF3EC" stroke="#FFCDB5" stroke-width="1"/>
-                    <circle cx="170" cy="130" r="50" fill="#FFCDB5" fill-opacity="0.3" stroke="#F09D6B" stroke-width="1.5"/>
-                    <circle cx="170" cy="130" r="28" fill="#F09D6B" fill-opacity="0.4"/>
-                    <circle cx="170" cy="130" r="12" fill="#C66A42"/>
-                    <path d="M280 100 L340 130 L280 160 L220 130 Z" fill="#FFE4D0" stroke="#F09D6B" stroke-width="1.5"/>
-                    <circle cx="280" cy="130" r="8" fill="#C66A42" fill-opacity="0.6"/>
-                    <path d="M110 210 L170 210 L140 240 Z" fill="#FFCDB5" stroke="#F09D6B" stroke-width="1"/>
-                    <path d="M330 210 L390 210 L360 240 Z" fill="#FFCDB5" stroke="#F09D6B" stroke-width="1"/>
+            <div class="hero-visual">
+                <svg width="100%" height="250" viewBox="0 0 500 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="500" height="270" rx="36" fill="#FFF5EE" stroke="#FFE0CC" stroke-width="1"/>
+                    <circle cx="170" cy="125" r="48" fill="#FFEFE2" stroke="#F5A06B" stroke-width="1.5"/>
+                    <circle cx="170" cy="125" r="28" fill="#FFCCAE" fill-opacity="0.5"/>
+                    <circle cx="170" cy="125" r="11" fill="#C45A2E"/>
+                    <path d="M280 105 L340 135 L280 165 L220 135 Z" fill="#FFE0CC" stroke="#F5A06B" stroke-width="1.5"/>
+                    <circle cx="280" cy="135" r="8" fill="#C45A2E" fill-opacity="0.6"/>
+                    <path d="M390 115 L410 140 L390 165 L370 140 Z" fill="#FFCCAE" stroke="#F5A06B" stroke-width="1"/>
+                    <path d="M120 210 L180 210 L150 245 Z" fill="#FFEFE2" stroke="#F5A06B" stroke-width="1"/>
+                    <path d="M320 210 L380 210 L350 245 Z" fill="#FFEFE2" stroke="#F5A06B" stroke-width="1"/>
                 </svg>
             </div>
         </div>
     </section>
 
-    <!-- Features / Glow -->
-    <section id="features">
+    <section id="float">
         <div class="container">
-            <h2 class="section-title">Ways we illuminate your world</h2>
-            <p class="section-sub">Gentle features that make AI feel like sunshine</p>
+            <div class="section-header">
+                <h2>Ways drift flows with you</h2>
+                <p>Gentle features that float like morning mist</p>
+            </div>
             <div class="cards-grid">
-                <div class="nova-card"><div class="card-icon"><i class="fas fa-comment-smile"></i></div><h3>Warm Conversations</h3><p>Natural dialogue with emotional intelligence — AI that truly listens.</p></div>
-                <div class="nova-card"><div class="card-icon"><i class="fas fa-chart-line"></i></div><h3>Glowing Insights</h3><p>Beautiful, simple analytics that highlight what matters most.</p></div>
-                <div class="nova-card"><div class="card-icon"><i class="fas fa-moon"></i></div><h3>Gentle Automation</h3><p>Quiet, reliable workflows that never interrupt your flow.</p></div>
-                <div class="nova-card"><div class="card-icon"><i class="fas fa-hand-holding-heart"></i></div><h3>Ethical Radiance</h3><p>Privacy-first, bias-aware, and beautifully transparent.</p></div>
+                <div class="drift-card" onclick="openModal()"><div class="card-icon">🌫️</div><h3>Mist Chat</h3><p>Conversations that float gently, like fog over still water.</p></div>
+                <div class="drift-card" onclick="openModal()"><div class="card-icon">✨</div><h3>Drifting Insights</h3><p>Beautiful, gentle analytics that arrive like morning light through mist.</p></div>
+                <div class="drift-card" onclick="openModal()"><div class="card-icon">🍃</div><h3>Soft Current</h3><p>Automation that moves like a gentle stream — quiet and effortless.</p></div>
+                <div class="drift-card" onclick="openModal()"><div class="card-icon">🕯️</div><h3>Sacred Mist</h3><p>Privacy-first, bias-aware, and transparent as morning air.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Radiance section -->
-    <section id="radiance">
+    <section id="mist">
         <div class="container">
-            <div class="features-grid">
-                <div class="feature-block"><i class="fas fa-feather" style="font-size: 2rem; color:#c66a42;"></i><h3 style="margin: 1rem 0 0.5rem;">Lightweight</h3><p>Blazing fast, minimal footprint</p></div>
-                <div class="feature-block"><i class="fas fa-cloud-sun" style="font-size: 2rem; color:#c66a42;"></i><h3 style="margin: 1rem 0 0.5rem;">Always available</h3><p>99.99% uptime radiance</p></div>
-                <div class="feature-block"><i class="fas fa-globe" style="font-size: 2rem; color:#c66a42;"></i><h3 style="margin: 1rem 0 0.5rem;">Global glow</h3><p>Available in 30+ languages</p></div>
-                <div class="feature-block"><i class="fas fa-shield" style="font-size: 2rem; color:#c66a42;"></i><h3 style="margin: 1rem 0 0.5rem;">Your data, yours</h3><p>Never sold, never trained on</p></div>
+            <div class="mist-row">
+                <div class="mist-cell"><i class="fas fa-feather-alt" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">Feather-light</h3><p>Blazing fast, soft touch</p></div>
+                <div class="mist-cell"><i class="fas fa-globe" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">52 languages</h3><p>Global drift glow</p></div>
+                <div class="mist-cell"><i class="fas fa-shield-heart" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">Yours always</h3><p>Never trained on</p></div>
+                <div class="mist-cell"><i class="fas fa-cloud-sun" style="font-size: 2rem; color:#c45a2e;"></i><h3 style="margin: 1rem 0 0.5rem;">Drift by soul</h3><p>Built with empathy</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing -->
     <section id="pricing">
         <div class="container">
-            <h2 class="section-title">Simple, radiant pricing</h2>
+            <div class="section-header">
+                <h2>Gentle plans for every drift</h2>
+                <p>Pricing as soft as morning mist</p>
+            </div>
             <div class="pricing-grid">
-                <div class="price-card"><h3>Kindle</h3><div class="price">$0</div><p>100 conversations/month, basic glow.</p><a href="#" class="btn-outline-nova" style="margin-top:1.5rem; display:inline-block;">Start free</a></div>
-                <div class="price-card featured"><h3>Radiance <span style="background:#ffe4d0; font-size:0.7rem; padding:0.2rem 0.6rem; border-radius:40px;">✨ Most loved</span></h3><div class="price">$22<span style="font-size:1rem;">/mo</span></div><p>Unlimited conversations, priority support, API access.</p><a href="#" class="btn-primary-nova">Go radiant</a></div>
-                <div class="price-card"><h3>Lumina</h3><div class="price">$49<span style="font-size:1rem;">/mo</span></div><p>Team features, analytics dashboard, custom integration.</p><a href="#" class="btn-outline-nova">Contact us</a></div>
+                <div class="price-card"><h3>Vapor</h3><div class="price-number">$0</div><p>280 messages/month, basic drift, community mist.</p>
+                    <a href="#" class="btn-outline" style="margin-top:1.5rem; display:inline-block;" onclick="openModal()">Start vapor</a>
+                </div>
+                <div class="price-card featured"><h3>Drift <span style="background:#ffe0cc; font-size:0.7rem; padding:0.2rem 0.6rem; border-radius:40px;">🌫️ Most gentle</span></h3><div class="price-number">$10<span style="font-size:1rem;">/mo</span></div><p>Unlimited messages, priority drift, full API.</p>
+                    <a href="#" class="btn-primary" onclick="openModal()">Float with drift</a>
+                </div>
+                <div class="price-card"><h3>Mist</h3><div class="price-number">$27<span style="font-size:1rem;">/mo</span></div><p>Team features, analytics, custom mist.</p>
+                    <a href="#" class="btn-outline" onclick="openModal()">Enter mist</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
     <div class="container">
-        <div class="cta-nova">
-            <h2 style="font-size: 2rem;">Let your work glow with NovaLume</h2>
-            <p style="margin: 1rem 0 2rem; opacity: 0.85;">Join a community that values warmth, ethics, and radiant intelligence.</p>
-            <a href="#" class="btn-primary-nova"><i class="fas fa-star"></i> Illuminate your free trial</a>
+        <div class="cta-section">
+            <h2 style="font-size: 2rem;">Let gentle mist carry you forward</h2>
+            <p style="margin: 1rem 0 2rem; opacity: 0.85;">Join thousands who've found soft, drifting intelligence with Drift.</p>
+            <a href="#" class="btn-primary" onclick="openModal()"><i class="fas fa-cloud-sun"></i> Start your drift trial</a>
         </div>
     </div>
 
-    <!-- Privacy Policy -->
     <div class="container" id="privacy">
-        <div class="privacy-nova">
-            <h2><i class="fas fa-leaf" style="color:#f09d6b;"></i> Privacy Policy</h2>
-            <p><strong>Effective:</strong> May 2025 | NovaLume Labs believes in transparent, gentle data practices.</p>
+        <div class="privacy-section">
+            <h2><i class="fas fa-leaf" style="color:#f5a06b;"></i> Sacred Drift — Our Gentle Vow</h2>
+            <p><strong>Last gentle drift:</strong> May 2025 | Drift Labs holds your trust as soft as morning mist.</p>
             
-            <h3>1. Information we collect</h3>
-            <p>We collect basic account information (name, email), conversation history (encrypted), and usage patterns. You own everything you create. We never train public models on your private data.</p>
+            <h3>1. What we gather</h3>
+            <p>Account essence, conversation drift (encrypted at rest), and gentle usage echoes. You remain the sole owner of your drifting light.</p>
             
-            <h3>2. How we use your information</h3>
-            <p>To provide AI services, improve our models, personalize your experience, billing, and support. No selling or sharing for advertising.</p>
+            <h3>2. How your light is honoured</h3>
+            <p>To nurture our AI, personalise your journey, handle billing, and support you. Zero selling. Zero advertising training. Zero dark patterns.</p>
             
-            <h3>3. Data retention & deletion</h3>
-            <p>You can delete conversations anytime. Account data retained until deletion requested. Full data export available.</p>
+            <h3>3. Keeping your drift safe</h3>
+            <p>You may delete any conversation instantly. Account data vanishes when you wish. Full gentle export available anytime.</p>
             
-            <h3>4. Third-party sharing</h3>
-            <p>We use trusted infrastructure (AWS, Cloudflare) under strict data agreements. All data encrypted at rest and in transit.</p>
+            <h3>4. Trusted guardians</h3>
+            <p>We partner with secure infrastructure providers under strict data pledges. All data travels encrypted and rests encrypted.</p>
             
-            <h3>5. Your rights (GDPR / CCPA)</h3>
-            <p>Access, correction, deletion, restriction, portability. Email <strong>privacy@novalume.ai</strong>. Marketing opt-out available.</p>
+            <h3>5. Your drifting rights</h3>
+            <p>Access, correct, delete, restrict, or take your data elsewhere. Our privacy team is always here for you.</p>
             
-            <h3>6. Security measures</h3>
-            <p>AES-256 encryption, TLS 1.3, regular audits, and privacy-by-design.</p>
+            <h3>6. Young souls</h3>
+            <p>Drift is crafted for humans 16 and over. We do not knowingly collect from younger hearts.</p>
             
-            <h3>7. Children's privacy</h3>
-            <p>NovaLume is intended for users 16+. We do not knowingly collect data from minors.</p>
+            <h3>7. Across borders</h3>
+            <p>Data may travel the globe under Standard Contractual Clauses — always protected, always respected.</p>
             
-            <h3>8. International transfers</h3>
-            <p>Data may be processed globally with Standard Contractual Clauses safeguards.</p>
-            
-            <h3>9. Policy updates & contact</h3>
-            <p>Material changes notified via email. Data Protection Officer: <strong>dpo@novalume.ai</strong>. Address: 101 Glow Lane, Portland, OR 97205.</p>
-            <p style="margin-top:1rem;"><i class="fas fa-sun" style="color:#f09d6b;"></i> NovaLume — Intelligence that shines warmly.</p>
+            <h3>8. When drift evolves</h3>
+            <p>Material changes will be shared with you. Our Data Protection Officer is always available.</p>
+            <p style="margin-top:1.5rem;"><i class="fas fa-cloud-sun" style="color:#f5a06b;"></i> Drift — Intelligence that floats gently with you.</p>
         </div>
     </div>
 </main>
@@ -531,27 +612,56 @@
     <div class="container">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
             <div>
-                <h3 style="color:#3c2a23;">Nova<span style="color:#f09d6b;">Lume</span></h3>
-                <p style="max-width: 220px; margin-top: 0.5rem;">Radiant intelligence for everyone.</p>
+                <h3 style="color:#3d2b1d;">Drift<span style="color:#f5a06b;">🌫️</span></h3>
+                <p style="max-width: 210px; margin-top: 0.5rem;">Your gentle mist of wisdom.</p>
                 <div style="margin-top: 1rem;">
-                    <i class="fab fa-twitter" style="margin-right: 1rem;"></i>
-                    <i class="fab fa-instagram" style="margin-right: 1rem;"></i>
-                    <i class="fab fa-mastodon"></i>
+                    <a href="#" onclick="openModal(); return false;" style="color:#b08066; margin-right: 1rem;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" onclick="openModal(); return false;" style="color:#b08066; margin-right: 1rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" onclick="openModal(); return false;" style="color:#b08066;"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
-            <div><h4>Product</h4><p>Features<br>Pricing<br>API<br>Status</p></div>
-            <div><h4>Resources</h4><p>Blog<br>Documentation<br>Community<br>Support</p></div>
-            <div><h4>Legal</h4><p><a href="#privacy" style="color:#b0886e; text-decoration:none;">Privacy Policy</a><br>Terms of Service<br>Ethics<br>Security</p></div>
+            <div>
+                <h4>Float</h4>
+                <p><a href="#float" style="color:#b08066; text-decoration:none;">Features</a><br>
+                   <a href="#pricing" style="color:#b08066; text-decoration:none;">Pricing</a><br>
+                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">API</a><br>
+                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Status</a></p>
+            </div>
+            <div>
+                <h4>Resources</h4>
+                <p><a href="#" onclick="openModal(); return false;" style="color:#b08066;">Journal</a><br>
+                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Guide</a><br>
+                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Community</a><br>
+                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Support</a></p>
+            </div>
+            <div>
+                <h4>Trust</h4>
+                <p><a href="#privacy" style="color:#b08066; text-decoration:none;">Privacy Vow</a><br>
+                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Terms of Drift</a><br>
+                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Ethics Charter</a><br>
+                   <a href="#" onclick="openModal(); return false;" style="color:#b08066;">Security</a></p>
+            </div>
         </div>
-        <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #ffddd0; margin-top: 2rem; font-size: 0.8rem;">
-            © 2025 NovaLume Labs — Let your intelligence glow.
+        <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #ffe0cc; margin-top: 2rem; font-size: 0.8rem;">
+            <p>© 2025 Drift Labs — Intelligence that drifts gently with you.</p>
+            <p style="margin-top: 0.5rem;">Drifting in trust · Flowing with grace</p>
         </div>
     </div>
 </footer>
 
-<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
-<script src="protection.js"></script>
+<a href="#" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;"><i class="fas fa-arrow-up"></i></a>
+
 <script>
+    function openModal() {
+        document.getElementById('demoModal').style.display = 'flex';
+    }
+    function closeModal() {
+        document.getElementById('demoModal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+        let modal = document.getElementById('demoModal');
+        if (event.target === modal) modal.style.display = 'none';
+    }
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -562,6 +672,10 @@
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
+    });
+    document.querySelector('.back-to-top').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 </script>
 </body>
